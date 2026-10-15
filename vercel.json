@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "frontend",
+  "rewrites": [
+    { "source": "/", "destination": "/nariglow.html" },
+    { "source": "/api/:path*", "destination": "/api/proxy?path=:path*" }
+  ],
+  "functions": {
+    "api/proxy.js": { "maxDuration": 60 }
+  }
+}
