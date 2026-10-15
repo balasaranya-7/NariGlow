@@ -2,44 +2,46 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load env variables
+// Load the same private Atlas/local settings used by the backend server.
+dotenv.config({ path: path.join(__dirname, '../.env.local') });
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 const connectDB = require('../config/db');
+const { images: skincareImages, newProducts: newSkincareProducts } = require('./skincareCatalog');
 
 const categoriesData = [
-  { slug: "sarees", name: "Sarees", img: "https://images.pexels.com/photos/27918892/pexels-photo-27918892.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "kurtis", name: "Kurtis", img: "https://images.pexels.com/photos/13178920/pexels-photo-13178920.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "skirts", name: "Skirts", img: "https://images.pexels.com/photos/25466385/pexels-photo-25466385.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "tops", name: "Tops", img: "https://images.pexels.com/photos/37466294/pexels-photo-37466294.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "western-wear", name: "Western Wear", img: "https://images.pexels.com/photos/31410216/pexels-photo-31410216.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "skincare", name: "Skincare", img: "https://images.pexels.com/photos/34939732/pexels-photo-34939732.jpeg?auto=compress&cs=tinysrgb&w=400" },
+  { slug: "sarees", name: "Sarees", img: "https://images.unsplash.com/photo-1776504768745-551029df100d?auto=format&fit=crop&w=500&q=85" },
+  { slug: "kurtis", name: "Kurtis", img: "https://images.unsplash.com/photo-1742800786544-e935375035e3?auto=format&fit=crop&w=500&q=85" },
+  { slug: "skirts", name: "Skirts", img: "https://images.unsplash.com/photo-1561932850-f13404855e53?auto=format&fit=crop&w=500&q=85" },
+  { slug: "tops", name: "Tops", img: "https://images.unsplash.com/photo-1735855335518-5a05da0730b4?auto=format&fit=crop&w=500&q=85" },
+  { slug: "western-wear", name: "Western Wear", img: "https://images.unsplash.com/photo-1760551600273-bca4b15907d0?auto=format&fit=crop&w=500&q=85" },
+  { slug: "skincare", name: "Skincare", img: skincareImages[2] },
   { slug: "makeup", name: "Makeup", img: "https://images.pexels.com/photos/2586073/pexels-photo-2586073.jpeg?auto=compress&cs=tinysrgb&w=400" },
   { slug: "shoes", name: "Shoes", img: "https://images.pexels.com/photos/27113457/pexels-photo-27113457.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "jewelry", name: "Jewelry", img: "https://images.pexels.com/photos/13595793/pexels-photo-13595793.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "minimal-jewelry", name: "Minimal Jewelry", img: "https://images.pexels.com/photos/21787515/pexels-photo-21787515.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "accessories", name: "Accessories", img: "https://images.pexels.com/photos/16353877/pexels-photo-16353877.jpeg?auto=compress&cs=tinysrgb&w=400" },
-  { slug: "handbags", name: "Handbags", img: "https://images.pexels.com/photos/4830930/pexels-photo-4830930.jpeg?auto=compress&cs=tinysrgb&w=400" }
+  { slug: "jewelry", name: "Jewelry", img: "https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?auto=format&fit=crop&w=500&q=85" },
+  { slug: "minimal-jewelry", name: "Minimal Jewelry", img: "https://images.unsplash.com/photo-1778000001290-0b67eeb2fbc2?auto=format&fit=crop&w=500&q=85" },
+  { slug: "accessories", name: "Accessories", img: "https://images.unsplash.com/photo-1771695838794-d3139108b1cd?auto=format&fit=crop&w=500&q=85" },
+  { slug: "handbags", name: "Handbags", img: "https://images.unsplash.com/photo-1713425886033-91a7d74b26a5?auto=format&fit=crop&w=500&q=85" }
 ];
 
 const brands = ["Aura", "Studio Nari", "Linen & Co", "Petal", "Kōan", "Verve", "Maison Lune", "Terra"];
 const adjectives = ["Silk Blend", "Handwoven", "Organic Cotton", "Draped", "Embroidered", "Structured", "Airy", "Tailored", "Signature", "Classic"];
 
 const categoryImagePools = {
-  "sarees": [28939776, 19015918, 18035310, 29996312, 19015925, 17768355, 18035302, 18456786, 28428044, 14765915, 28706341, 28428039],
-  "kurtis": [36311379, 8770996, 28512776, 13178920, 35521738, 36567501, 28512787, 37523793, 28213774, 37523792, 37523801, 20702676],
-  "skirts": [5848788, 11530922, 19510476, 5542969, 8950053, 27208599, 17967726, 36730400, 19932178, 20008026, 18693642, 20167615],
-  "tops": [20483777, 29527343, 15758653, 5713294, 10462543, 10462527, 10512915, 9172606, 26100325, 13915356, 16365010, 2666467],
-  "western-wear": [31410216, 14801160, 21879348, 8306375, 8386652, 10007478, 3946692, 15595670, 15345385, 10882067, 2884299],
-  "skincare": [34939732, 34939731, 34939730, 34939729, 34939728, 34939704, 34939759, 34939761, 34939760, 34939727],
+  "sarees": ["https://images.unsplash.com/photo-1776504768745-551029df100d?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1692992193981-d3d92fabd9cb?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1638456286433-79766945a656?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1738690940173-e16fee805fe9?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1619516388835-2b60acc4049e?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1693382507826-e1ee4140f6a7?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1717835429626-d6dd3f2c9afb?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1597897545901-6ac15b725974?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1763017707725-a9854affe474?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1738690789530-9c5ee199575c?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1680711552692-76a8bd810398?auto=format&fit=crop&w=900&q=85"],
+  "kurtis": ["https://images.unsplash.com/photo-1742800786544-e935375035e3?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1754391851702-e5275cf80e34?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1766994063823-ed214f883548?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1754641600710-16c1ba3894c6?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1742800788220-1e42256d6022?auto=format&fit=crop&w=900&q=85", 36311379, 8770996, 28512776, 13178920, 35521738, 36567501, 28512787],
+  "skirts": ["https://images.unsplash.com/photo-1561932850-f13404855e53?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1783095628724-c6036ce0ce70?auto=format&fit=crop&w=900&q=85", 764872, 22468578, 16986581, 22819845, 5848788, 11530922, 19510476, 5542969, 8950053, 27208599],
+  "tops": ["https://images.unsplash.com/photo-1735855335518-5a05da0730b4?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1717766293792-e78ea97e9d68?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1724403467796-73725db14284?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1683849117195-83517b362436?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1527723503749-9e61addd1b3e?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1715541448115-3be2097950fa?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1548176450-5196b4c0816b?auto=format&fit=crop&w=900&q=85", 2059051, 12678479, 2859381, 20736190, 20483777],
+  "western-wear": [31410216, 14801160, 21879348, 8306375, 8386652, "https://images.unsplash.com/photo-1760551600273-bca4b15907d0?auto=format&fit=crop&w=900&q=85", 3946692, 15595670, 15345385, 10882067, 2884299],
+  "skincare": skincareImages,
   "makeup": [2586073, 2536009, 2535913, 2633986, 2535928, 2547462, 2517447, 2587363, 2517881, 2587370],
   "shoes": [27113457, 27113458, 27113460, 27113465, 27113462, 26965810, 27113463, 26796158, 27113459, 26965813],
-  "jewelry": [13595793, 12144990, 20858959, 13924051, 10862233, 12133990, 33737462, 10937834, 8003772, 34444125, 18597841, 19646999],
-  "minimal-jewelry": [21787515, 9645737, 15925159, 4735885, 7514818, 10441397, 10804840, 7407595, 8105125],
-  "accessories": [16353877, 2761038, 9558700, 1697214, 1667088, 3641056, 8651787, 12569725, 11506572, 15035198, 2883138, 7901774],
-  "handbags": [4830930, 5745781, 3808249, 26925244, 1152077, 1152078, 26918698, 30056477, 932401, 6787035, 28775829]
+  "jewelry": ["https://images.unsplash.com/photo-1632525231035-c054cd5019db?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1662833832755-177c2ceb7869?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1774978239401-7bfaff4207ee?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1720528347553-5a251993ee00?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1623133343364-04d1d1a26fcb?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1758995115857-2de1eb6283d0?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1778182530965-b7dd00070c17?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1787022087854-177d08846b9e?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1767921777873-81818b812a4d?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1778148046789-8e3a677eebbd?auto=format&fit=crop&w=900&q=85", "https://images.unsplash.com/photo-1617191880362-aac615de3c26?auto=format&fit=crop&w=900&q=85"],
+  "minimal-jewelry": ["https://images.unsplash.com/photo-1778000001290-0b67eeb2fbc2?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1632525231035-c054cd5019db?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1662833832755-177c2ceb7869?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1767921777873-81818b812a4d?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1770643661899-bf150b61789e?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1562819440-91870f5559d9?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1645748655092-74df6b5e93e0?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1623133343364-04d1d1a26fcb?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?auto=format&fit=crop&w=900&q=85"],
+  "accessories": ["https://images.unsplash.com/photo-1771695838794-d3139108b1cd?auto=format&fit=crop&w=900&q=85", 2761038, 9558700, 1697214, 1667088, 3641056, 8651787, 12569725, 11506572, 15035198, 2883138, 16353877],
+  "handbags": [16353877, "https://images.unsplash.com/photo-1713425886033-91a7d74b26a5?auto=format&fit=crop&w=900&q=85", 3808249, "https://images.unsplash.com/photo-1559127452-cb4ef7888fa1?auto=format&fit=crop&w=900&q=85", 1152077, 4830930, 26918698, 30056477, 932401, 6787035, 28775829]
 };
 
 const nounsByCategory = {
@@ -48,7 +50,7 @@ const nounsByCategory = {
   "skirts": ["Midi Skirt", "Maxi Skirt", "Pleated Skirt", "A-Line Skirt", "Wrap Skirt", "Denim Skirt", "Flared Skirt", "Pencil Skirt", "Tiered Skirt", "Satin Skirt"],
   "tops": ["Wrap Top", "Blouse", "Crop Top", "Tunic Top", "Peplum Top", "Off-Shoulder Top", "Tie-Front Top", "Puff Sleeve Top", "Linen Top", "Knit Top"],
   "western-wear": ["Co-ord Set", "Jumpsuit", "Shift Dress", "Wide-Leg Trousers", "Denim Jacket", "Blazer Set", "Culottes Set", "Bodycon Dress", "Palazzo Set", "Playsuit"],
-  "skincare": ["Face Serum", "Vitamin C Serum", "Daily Moisturizer", "Facial Cleanser", "Sunscreen SPF50", "Under Eye Cream", "Clay Face Mask", "Hydrating Toner", "Lip Balm", "Overnight Repair Cream"],
+  "skincare": ["Face Serum", "Vitamin C Serum", "Daily Moisturizer", "Facial Cleanser", "Sunscreen SPF50", "Under Eye Cream", "Clay Face Mask", "Hydrating Toner", "Lip Balm", "Overnight Repair Cream", ...newSkincareProducts.map(product => product.name)],
   "makeup": ["Kajal", "Matte Lipstick", "Liquid Foundation", "Compact Powder", "Eyeliner", "Volumizing Mascara", "Cream Blush", "Highlighter Palette", "Lip Gloss", "Makeup Primer"],
   "shoes": ["Leather Loafers", "Ballet Flats", "Block Heels", "Casual Sneakers", "Flat Sandals", "Wedge Heels", "Stiletto Heels", "Ankle Boots", "Espadrilles", "Slip-On Mules"],
   "jewelry": ["Gold Hoop Earrings", "Statement Necklace", "Kundan Ring", "Gold Bangles Set", "Choker Necklace", "Jhumka Earrings", "Bridal Necklace Set", "Pearl Ring", "Temple Jewelry Set", "Charm Bracelet"],
@@ -91,10 +93,16 @@ const seedDatabase = async () => {
     // Connect to database
     await connectDB();
 
-    console.log('Clearing database collections...');
-    await Product.deleteMany({});
-    await Category.deleteMany({});
-    console.log('Existing products and categories cleared.');
+    const [existingProducts, existingCategories] = await Promise.all([
+      Product.countDocuments(),
+      Category.countDocuments()
+    ]);
+    if (existingProducts || existingCategories) {
+      throw new Error(
+        `Database already contains ${existingProducts} products and ${existingCategories} categories. ` +
+        'Seeding stopped to protect existing data; it only runs on an empty catalog.'
+      );
+    }
 
     console.log('Seeding categories...');
     const insertedCategories = await Category.insertMany(categoriesData);
@@ -109,12 +117,14 @@ const seedDatabase = async () => {
       const nouns = nounsByCategory[cat.slug];
       
       // Seed between 8 and 12 products per category (exactly like frontend does)
-      const count = Math.max(8, Math.min(pool.length, 12));
+      const count = cat.slug === 'skincare' ? newSkincareProducts.length + 10 : Math.max(8, Math.min(pool.length, 12));
       for (let i = 0; i < count; i++) {
         const noun = nouns[i % nouns.length];
         const brand = brands[productIndex % brands.length];
         const adjective = adjectives[i % adjectives.length];
-        const name = `${adjective} ${noun}`;
+        const name = cat.slug === 'skincare' && i >= 10
+          ? newSkincareProducts[i - 10].name
+          : `${adjective} ${noun}`;
         
         // Match mathematical generation formulas from original HTML code:
         const base = 799 + ((productIndex * 173) % 4700);
@@ -123,11 +133,10 @@ const seedDatabase = async () => {
         const price = hasDiscount ? Math.round(base * (1 - discountPct / 100)) : base;
         
         // Pexels gallery images mapping:
-        const imgIds = [
-          pool[i % pool.length], 
-          pool[(i + 3) % pool.length], 
-          pool[(i + 6) % pool.length]
-        ];
+        const imgIds = [pool[i % pool.length]];
+        const imageUrl = (value, width) => typeof value === 'string'
+          ? value.replace('w=900', `w=${width}`)
+          : `https://images.pexels.com/photos/${value}/pexels-photo-${value}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
         
         const rating = (3.8 + (productIndex % 12) * 0.1).toFixed(1);
         const reviewsCount = 20 + (productIndex * 7) % 340;
@@ -148,8 +157,8 @@ const seedDatabase = async () => {
           discountPct,
           rating: parseFloat(rating),
           reviews: reviewsCount,
-          images: imgIds.map(iid => `https://images.pexels.com/photos/${iid}/pexels-photo-${iid}.jpeg?auto=compress&cs=tinysrgb&w=700`),
-          img: `https://images.pexels.com/photos/${imgIds[0]}/pexels-photo-${imgIds[0]}.jpeg?auto=compress&cs=tinysrgb&w=500`,
+          images: imgIds.map(iid => imageUrl(iid, 700)),
+          img: imageUrl(imgIds[0], 500),
           stock: productIndex % 9 === 0 ? "low" : "in",
           material: materialByCategory[cat.slug],
           care: careByCategory[cat.slug],

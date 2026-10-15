@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
  */
 const createOrder = async (req, res) => {
   try {
-    const { shippingInfo, paymentMethod, couponApplied, items } = req.body;
+    const { shippingInfo, paymentMethod, couponCode, items } = req.body;
 
     console.log(`Order placement initiated for user: ${req.user._id}`);
 
@@ -20,6 +20,11 @@ const createOrder = async (req, res) => {
         success: false,
         message: 'No order items provided'
       });
+    }
+
+    const normalizedPaymentMethod = String(paymentMethod || '').toLowerCase();
+    if (!['upi', 'card', 'cod'].includes(normalizedPaymentMethod)) {
+      return res.status(400).json({ success: false, message: 'Choose a valid payment method.' });
     }
 
     // 2. Validation: Verify shipping info
@@ -60,7 +65,10 @@ const createOrder = async (req, res) => {
         });
       }
 
-      const itemQty = parseInt(item.qty, 10) || 1;
+      const itemQty = Number.parseInt(item.qty, 10);
+      if (!Number.isInteger(itemQty) || itemQty < 1 || itemQty > 99) {
+        return res.status(400).json({ success: false, message: 'Each item quantity must be between 1 and 99.' });
+      }
       const itemSubtotal = product.price * itemQty;
       dbSubtotal += itemSubtotal;
 
@@ -79,7 +87,7 @@ const createOrder = async (req, res) => {
     // Subtotal
     const subtotal = dbSubtotal;
     // Coupon Discount: 10% off (GLOW10)
-    const discount = couponApplied ? Math.round(subtotal * 0.1) : 0;
+    const discount = String(couponCode || '').trim().toUpperCase() === 'GLOW10' ? Math.round(subtotal * 0.1) : 0;
     // Shipping: Free above 1499, else 79. Free if order is 0.
     const shipping = subtotal > 1499 || subtotal === 0 ? 0 : 79;
     // Taxable
@@ -101,8 +109,9 @@ const createOrder = async (req, res) => {
       user: req.user._id,
       items: orderItems,
       shippingInfo,
-      paymentMethod,
-      paymentStatus: paymentMethod === 'cod' ? 'Pending' : 'Paid', // UPI / Card assumed paid in checkout
+      paymentMethod: normalizedPaymentMethod,
+      // UPI and card are explicitly demo simulations until a real gateway is integrated.
+      paymentStatus: normalizedPaymentMethod === 'cod' ? 'Pending' : 'Demo Paid',
       subtotal,
       discount,
       shipping,

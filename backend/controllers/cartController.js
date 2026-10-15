@@ -56,6 +56,9 @@ const addToCart = async (req, res) => {
         message: 'Product ID is required'
       });
     }
+    if (quantity < 1 || quantity > 99) {
+      return res.status(400).json({ success: false, message: 'Quantity must be between 1 and 99.' });
+    }
 
     // Verify if product exists
     const product = await Product.findById(productId);
@@ -243,6 +246,8 @@ const syncCart = async (req, res) => {
     }
 
     for (const item of localItems) {
+      const itemQty = Number.parseInt(item.qty, 10);
+      if (!Number.isInteger(itemQty) || itemQty < 1 || itemQty > 99) continue;
       let dbProductId = item.product || item.id;
 
       // Handle numerical product IDs if passed from old frontend logic
@@ -270,9 +275,9 @@ const syncCart = async (req, res) => {
         const itemIdx = cart.items.findIndex(ci => ci.product.toString() === productDoc._id.toString());
         if (itemIdx > -1) {
           // If already in DB cart, choose the larger quantity or sum them. We will merge by summing.
-          cart.items[itemIdx].qty += item.qty;
+          cart.items[itemIdx].qty = Math.min(99, cart.items[itemIdx].qty + itemQty);
         } else {
-          cart.items.push({ product: productDoc._id, qty: item.qty });
+          cart.items.push({ product: productDoc._id, qty: itemQty });
         }
       }
     }

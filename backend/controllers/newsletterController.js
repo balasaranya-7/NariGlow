@@ -20,7 +20,7 @@ const subscribeNewsletter = async (req, res) => {
     }
 
     // 2. Validation: Pattern check
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,

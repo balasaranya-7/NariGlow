@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Cart = require('../models/Cart');
 const Wishlist = require('../models/Wishlist');
 const generateToken = require('../utils/generateToken');
+const crypto = require('crypto');
 
 /**
  * @desc    Register a new user
@@ -10,7 +11,9 @@ const generateToken = require('../utils/generateToken');
  */
 const registerUser = async (req, res) => {
   try {
-    const { name, email, mobile, password } = req.body;
+    const { name, password } = req.body;
+    const email = String(req.body.email || '').trim().toLowerCase();
+    const mobile = String(req.body.mobile || '').trim();
 
     console.log(`Registration attempt for email: ${email}`);
 
@@ -23,7 +26,7 @@ const registerUser = async (req, res) => {
     }
 
     // 2. Validation: Email pattern check
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
@@ -108,7 +111,8 @@ const registerUser = async (req, res) => {
  */
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const email = String(req.body.email || '').trim().toLowerCase();
+    const { password } = req.body;
 
     console.log(`Login attempt for email: ${email}`);
 
@@ -201,6 +205,9 @@ const updateUserProfile = async (req, res) => {
       user.mobile = req.body.mobile || user.mobile;
       
       if (req.body.password) {
+        if (!req.body.currentPassword || !(await user.matchPassword(req.body.currentPassword))) {
+          return res.status(400).json({ success: false, message: 'Enter your current password to set a new one' });
+        }
         if (req.body.password.length < 6) {
           return res.status(400).json({
             success: false,
@@ -241,9 +248,68 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+const requestPasswordReset = async (req, res) => {
+  const email = String(req.body.email || '').trim().toLowerCase();
+  const genericResponse = { success: true, message: 'If an account exists for that email, a reset link will be sent.' };
+  if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM_EMAIL) {
+    return res.status(503).json({ success: false, message: 'Password reset email is not configured yet.' });
+  }
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(200).json(genericResponse);
+
+    const rawToken = crypto.randomBytes(32).toString('hex');
+    user.passwordResetTokenHash = crypto.createHash('sha256').update(rawToken).digest('hex');
+    user.passwordResetExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
+    await user.save();
+
+    const baseUrl = (process.env.APP_URL || 'http://localhost:5000').replace(/\/$/, '');
+    const resetUrl = `${baseUrl}/?reset=${encodeURIComponent(rawToken)}`;
+    const emailResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: process.env.RESEND_FROM_EMAIL,
+        to: [user.email],
+        subject: 'Reset your NariGlow password',
+        html: `<p>Hi ${user.name.replace(/[&<>"']/g, '')},</p><p>Use this link to reset your password. It expires in 15 minutes.</p><p><a href="${resetUrl}">Reset password</a></p><p>If you did not request this, you can ignore this email.</p>`
+      })
+    });
+    if (!emailResponse.ok) throw new Error(`Email provider returned ${emailResponse.status}`);
+    return res.status(200).json(genericResponse);
+  } catch (error) {
+    console.error(`Password reset request failed: ${error.message}`);
+    if (email) await User.updateOne({ email }, { $unset: { passwordResetTokenHash: 1, passwordResetExpiresAt: 1 } }).catch(() => {});
+    return res.status(503).json({ success: false, message: 'Password reset email is not available right now. Please try again later.' });
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const { token, password } = req.body;
+    if (!token || !password || password.length < 6) {
+      return res.status(400).json({ success: false, message: 'Provide a valid reset token and a password with at least 6 characters.' });
+    }
+    const tokenHash = crypto.createHash('sha256').update(token).digest('hex');
+    const user = await User.findOne({ passwordResetTokenHash: tokenHash, passwordResetExpiresAt: { $gt: new Date() } });
+    if (!user) return res.status(400).json({ success: false, message: 'This reset link is invalid or has expired. Request a new one.' });
+
+    user.password = password;
+    user.passwordResetTokenHash = undefined;
+    user.passwordResetExpiresAt = undefined;
+    await user.save();
+    return res.status(200).json({ success: true, message: 'Password updated. You can now log in.' });
+  } catch (error) {
+    console.error(`Password reset failed: ${error.message}`);
+    return res.status(500).json({ success: false, message: 'Could not reset password. Please try again.' });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
-  updateUserProfile
+  updateUserProfile,
+  requestPasswordReset,
+  resetPassword
 };

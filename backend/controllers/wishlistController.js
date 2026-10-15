@@ -80,7 +80,7 @@ const addToWishlist = async (req, res) => {
     }
 
     // Check if already in wishlist
-    if (wishlist.products.includes(targetObjectId)) {
+    if (wishlist.products.some(id => id.toString() === targetObjectId.toString())) {
       return res.status(400).json({
         success: false,
         message: 'Product is already in your wishlist',
@@ -145,7 +145,7 @@ const removeFromWishlist = async (req, res) => {
       });
     }
 
-    const itemIndex = wishlist.products.indexOf(targetObjectId);
+    const itemIndex = wishlist.products.findIndex(id => id.toString() === targetObjectId.toString());
     if (itemIndex === -1) {
       return res.status(404).json({
         success: false,
@@ -213,7 +213,7 @@ const syncWishlist = async (req, res) => {
 
       // Check if product exists in DB and is not already in the wishlist array
       const productExists = dbProducts.some(p => p._id.toString() === resolvedId.toString());
-      if (productExists && !wishlist.products.includes(resolvedId)) {
+      if (productExists && !wishlist.products.some(id => id.toString() === resolvedId.toString())) {
         wishlist.products.push(resolvedId);
       }
     }

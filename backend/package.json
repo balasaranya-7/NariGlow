@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "seed": "node seed/seedProducts.js"
+    "seed": "node seed/seedProducts.js",
+    "refresh:skincare": "node seed/refreshSkincareCatalog.js",
+    "refresh:product-images": "node seed/refreshProductImages.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

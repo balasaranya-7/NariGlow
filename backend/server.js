@@ -4,8 +4,9 @@ const dotenv = require('dotenv');
 const path = require('path');
 const connectDB = require('./config/db');
 
-// Load environment variables
-dotenv.config();
+// Load private local overrides first; keep credentials out of tracked files.
+dotenv.config({ path: path.join(__dirname, '.env.local') });
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 // Establish database connection
 connectDB();
@@ -13,9 +14,10 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors()); // Allow cross-origin requests
+app.use(cors(process.env.NODE_ENV === 'production' ? { origin: false } : {}));
 app.use(express.json()); // Body parser for incoming JSON payloads
 app.use(express.urlencoded({ extended: true })); // Body parser for URL-encoded values
+app.disable('x-powered-by');
 
 // Serve NariGlow Frontend statically
 // This mounts the frontend folder so that assets can be fetched.
@@ -40,7 +42,7 @@ app.use('/api/newsletter', require('./routes/newsletter.routes.js'));
 
 // Route for root URL to serve NariGlow.html directly from server
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/NariGlow.html'));
+  res.sendFile(path.join(__dirname, '../frontend/nariglow.html'));
 });
 
 // Custom 404 Route handler for API endpoints
@@ -66,6 +68,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
+
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'your_jwt_secret' || process.env.JWT_SECRET.length < 32) {
+  throw new Error('Set a random JWT_SECRET of at least 32 characters in backend/.env.local before starting NariGlow.');
+}
 
 const server = app.listen(PORT, () => {
   console.log(`NariGlow Server running in ${process.env.NODE_ENV || 'production'} mode on port ${PORT}`);

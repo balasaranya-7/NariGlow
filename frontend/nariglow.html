@@ -8,12 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FAFAFA;
+    --bg:#FFFAFB;
     --surface:#FFFFFF;
-    --accent:#D6CFC7;
-    --accent-deep:#BDAF9F;
-    --sage:#C7D7C0;
-    --slate:#BFC8D6;
+    --accent:#FFC7D1;
+    --accent-deep:#E2889F;
+    --sage:#DEEAF3;
+    --slate:#DEEAF3;
+    --peach:#FFDFBE;
+    --apricot:#F8AA80;
+    --dusty-rose:#E2889F;
     --text:#222222;
     --text-soft:#666666;
     --border:#ECECEC;
@@ -76,7 +79,7 @@
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background: #C89B7B;
+    background: var(--apricot);
     color: #fff;
     display: flex;
     align-items: center;
@@ -92,7 +95,7 @@
     font-family: "Playfair Display", serif;
     font-size: 30px;
     font-weight: 700;
-    color: #C89B7B;
+    color: var(--dusty-rose);
     letter-spacing: 1px;
     line-height: 1;
     transition: 0.3s ease;
@@ -181,7 +184,7 @@
     padding:14px 28px; border-radius:100px; font-size:14.5px; font-weight:600;
     transition:transform .22s ease, box-shadow .22s ease, background .22s ease; display:inline-flex; align-items:center; gap:8px;
   }
-  .btn-primary{background:var(--text); color:#fff;}
+  .btn-primary{background:var(--dusty-rose); color:#fff;}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(34,34,34,0.18);}
   .btn-secondary{background:transparent; color:var(--text); border:1px solid var(--border);}
   .btn-secondary:hover{background:var(--surface); border-color:var(--text); transform:translateY(-2px);}
@@ -249,7 +252,7 @@
     transition:transform .2s ease, background .2s ease; z-index:2;
   }
   .wishlist-icon:hover{transform:scale(1.1);}
-  .wishlist-icon.active svg{fill:#C97B7B; stroke:#C97B7B;}
+  .wishlist-icon.active svg{fill:var(--dusty-rose); stroke:var(--dusty-rose);}
   .quick-view-btn{
     position:absolute; left:50%; bottom:12px; transform:translate(-50%,14px);
     background:#fff; color:var(--text); font-size:12.5px; font-weight:600; padding:9px 18px;
@@ -296,7 +299,7 @@
 
   /* ---------- DEALS ---------- */
   .deals-banner{
-    background:linear-gradient(120deg, #F1EDE8 0%, #EDF1EA 100%);
+    background:linear-gradient(120deg, var(--peach) 0%, var(--sage) 100%);
     border-radius:var(--radius-lg); padding:44px 48px; display:flex; align-items:center; justify-content:space-between;
     margin-bottom:44px; flex-wrap:wrap; gap:24px;
   }
@@ -351,15 +354,15 @@
 
   /* ---------- NEWSLETTER ---------- */
   .newsletter{
-    background:var(--text); border-radius:24px; padding:60px; text-align:center; color:#fff;
+    background:var(--accent); border-radius:24px; padding:60px; text-align:center; color:var(--text);
     position:relative; overflow:hidden;
   }
-  .newsletter h3{font-size:28px; margin-bottom:10px; color:#fff;}
-  .newsletter p{color:rgba(255,255,255,0.65); font-size:14.5px; margin-bottom:30px;}
+  .newsletter h3{font-size:28px; margin-bottom:10px; color:var(--text);}
+  .newsletter p{color:rgba(34,34,34,0.72); font-size:14.5px; margin-bottom:30px;}
   .newsletter-form{display:flex; gap:10px; max-width:420px; margin:0 auto;}
   .newsletter-form input{
     flex:1; padding:13px 18px; border-radius:100px; border:1px solid rgba(255,255,255,0.2);
-    background:rgba(255,255,255,0.08); color:#fff; font-size:14px; outline:none;
+    background:rgba(255,255,255,0.78); color:var(--text); font-size:14px; outline:none;
   }
   .newsletter-form input::placeholder{color:rgba(255,255,255,0.45);}
   .newsletter-form input:focus{border-color:rgba(255,255,255,0.5);}
@@ -429,7 +432,7 @@
   .qty-selector span{font-size:13px; font-weight:600; min-width:22px; text-align:center;}
   .cart-item-price{font-size:13.5px; font-weight:700;}
   .remove-btn{color:#B5B5B5; font-size:12px; transition:color .2s;}
-  .remove-btn:hover{color:#C97B7B;}
+  .remove-btn:hover{color:var(--dusty-rose);}
   .empty-cart{text-align:center; padding:60px 10px; color:var(--text-soft); font-size:13.5px;}
   .coupon-row{display:flex; gap:8px; margin:18px 0;}
   .coupon-row input{
@@ -513,7 +516,7 @@
   .auth-switch{text-align:center; font-size:13px; color:var(--text-soft); margin-top:22px;}
   .auth-switch a{font-weight:700; color:var(--text); cursor:pointer;}
   .auth-switch a:hover{color:var(--accent-deep);}
-  .auth-error{font-size:12px; color:#C97B7B; min-height:14px; margin:-8px 0 12px;}
+  .auth-error{font-size:12px; color:var(--dusty-rose); min-height:14px; margin:-8px 0 12px;}
   .password-field{position:relative;}
   .password-toggle{
     position:absolute; right:12px; top:50%; transform:translateY(-50%); cursor:pointer; color:var(--text-soft);
@@ -522,7 +525,7 @@
 
   .toast{
     position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px); z-index:500;
-    background:var(--text); color:#fff; padding:13px 24px; border-radius:100px; font-size:13.5px; font-weight:500;
+    background:var(--dusty-rose); color:#fff; padding:13px 24px; border-radius:100px; font-size:13.5px; font-weight:500;
     opacity:0; visibility:hidden; transition:all .3s ease; display:flex; align-items:center; gap:8px;
     box-shadow:var(--shadow-lg);
   }
@@ -597,6 +600,7 @@
     cursor:pointer; transition:all .2s ease; background:var(--surface);
   }
   .radio-card:hover{border-color:var(--accent-deep);}
+  .radio-card.disabled{opacity:.55; cursor:not-allowed;}
   .radio-card.selected{border-color:var(--text); box-shadow:0 0 0 1px var(--text);}
   .radio-card input{accent-color:var(--text); width:16px; height:16px;}
   .radio-card .rc-title{font-size:13.5px; font-weight:600;}
@@ -658,6 +662,185 @@
     .newsletter-form{flex-direction:column;}
     .promo{padding:0 28px; text-align:left;}
   }
+
+  /* ---------- NARIGLOW PASTEL BOUTIQUE REDESIGN ---------- */
+  :root{
+    --bg:#FFF8F8;
+    --surface:#FFFFFF;
+    --accent:#FFC7D1;
+    --accent-deep:#D96F8D;
+    --sage:#DEEAF3;
+    --slate:#DEEAF3;
+    --peach:#FFDFBE;
+    --apricot:#F8AA80;
+    --dusty-rose:#E2889F;
+    --text:#392A30;
+    --text-soft:#78666D;
+    --border:#F1DCE1;
+    --radius-sm:12px;
+    --radius-md:18px;
+    --radius-lg:24px;
+    --shadow-sm:0 3px 12px rgba(124,75,91,0.07);
+    --shadow-md:0 12px 30px rgba(124,75,91,0.12);
+    --shadow-lg:0 24px 60px rgba(124,75,91,0.18);
+  }
+  body{background:linear-gradient(180deg,#FFFAFB 0%,#FFF8F5 48%,#F8FBFE 100%);}
+  .nav{background:rgba(255,248,250,.91); border-bottom-color:rgba(226,136,159,.28);}
+  .nav-inner{height:82px;}
+  .logo-icon{background:linear-gradient(145deg,var(--apricot),var(--dusty-rose)); box-shadow:0 6px 15px rgba(210,112,139,.24);}
+  .logo-text{color:#B95373;}
+  .logo:hover .logo-text{color:var(--text);}
+  .nav-links a{font-weight:600;}
+  .icon-btn{background:rgba(255,255,255,.7); border:1px solid rgba(226,136,159,.16);}
+  .icon-btn:hover{background:var(--accent);}
+  .badge{background:var(--dusty-rose); box-shadow:0 2px 7px rgba(210,112,139,.25);}
+  .hero{max-width:1330px; padding:76px 42px 88px; gap:62px;}
+  .hero::before{content:''; position:absolute; inset:26px 20px 20px; border-radius:38px; background:linear-gradient(120deg,rgba(255,199,209,.42),rgba(255,223,190,.48) 48%,rgba(222,234,243,.62)); z-index:0;}
+  .hero-glow{background:radial-gradient(circle,rgba(248,170,128,.48),rgba(255,199,209,.34) 42%,rgba(222,234,243,0) 73%);}
+  .hero-text{padding:28px 0 28px 24px;}
+  .eyebrow{color:#B95373; background:rgba(255,255,255,.68); padding:9px 14px; border:1px solid rgba(226,136,159,.25); border-radius:100px;}
+  .hero h1{font-size:clamp(44px,5vw,68px); line-height:1.04; max-width:580px; color:#392A30;}
+  .hero p{font-size:16px; line-height:1.8;}
+  .hero-visual{border:8px solid rgba(255,255,255,.88); border-radius:32px; box-shadow:0 24px 60px rgba(124,75,91,.2);}
+  .hero-tag{border:1px solid rgba(226,136,159,.22);}
+  section{padding:84px 0;}
+  .section-head h2,.page-title-row h2{color:#392A30; font-size:clamp(26px,3vw,36px);}
+  .section-head{margin-bottom:32px;}
+  .section-head h2::after{content:'';display:block;width:46px;height:4px;border-radius:5px;margin-top:12px;background:linear-gradient(90deg,var(--dusty-rose),var(--apricot));}
+  .alt-bg{background:linear-gradient(135deg,rgba(222,234,243,.7),rgba(255,255,255,.8) 62%,rgba(255,223,190,.35));border-color:rgba(222,234,243,.8);}
+  .category-grid{gap:20px;}
+  .category-card{border:4px solid rgba(255,255,255,.82); border-radius:24px; box-shadow:var(--shadow-md);}
+  .category-overlay{background:linear-gradient(to top,rgba(75,43,57,.72),rgba(75,43,57,.05) 70%);}
+  .category-name{font-size:15px; text-shadow:0 2px 10px rgba(0,0,0,.28);}
+  .product-grid{gap:25px;}
+  .product-card{border-color:#F3DEE3; border-radius:22px; box-shadow:0 6px 18px rgba(124,75,91,.06);}
+  .product-card:hover{box-shadow:0 18px 38px rgba(124,75,91,.15);}
+  .product-media{background:linear-gradient(145deg,#FFF0F2,#FFF1E4 50%,#EAF2F8);}
+  .discount-badge{background:var(--peach); color:#6C4435;}
+  .wishlist-icon{border:1px solid rgba(226,136,159,.22); box-shadow:0 4px 14px rgba(65,39,48,.08);}
+  .quick-view-btn{background:#fff5f7; color:#9F4B66;}
+  .product-info{padding:18px 18px 20px;}
+  .product-brand{color:#B66E80; letter-spacing:.1em;}
+  .product-name:hover{color:#B95373;}
+  .product-rating .stars,.review-stars{color:#D48756;}
+  .add-cart-btn{background:#FFF3F5; border-color:#F2D5DD; color:#754253; border-radius:12px;}
+  .add-cart-btn:hover{background:var(--dusty-rose); color:#fff; border-color:var(--dusty-rose);}
+  .deals-banner{border:1px solid rgba(255,255,255,.75); border-radius:28px; background:linear-gradient(115deg,#FFC7D1 0%,#FFDFBE 53%,#DEEAF3 100%); box-shadow:var(--shadow-md);}
+  .countdown .unit{border:1px solid rgba(255,255,255,.9); background:rgba(255,255,255,.78);}
+  .promo{border:6px solid #fff; box-shadow:var(--shadow-md);}
+  .promo::after{background:linear-gradient(90deg,rgba(255,242,245,.96),rgba(255,239,226,.75) 58%,rgba(255,255,255,.05));}
+  .why-card,.review-card{border-color:#F0DDE2; border-radius:22px; box-shadow:0 5px 16px rgba(124,75,91,.045);}
+  .why-icon{background:linear-gradient(145deg,var(--accent),var(--peach)); color:#8E4C61;}
+  .newsletter{background:linear-gradient(115deg,#FFC7D1,#FFDFBE 54%,#DEEAF3); border:1px solid #fff; box-shadow:var(--shadow-md);}
+  .newsletter-form input{border-color:rgba(185,83,115,.2); background:rgba(255,255,255,.86);}
+  .newsletter-form input::placeholder{color:#9C828B;}
+  .newsletter-form input:focus{border-color:var(--dusty-rose);}
+  .newsletter-form button{background:#B95373; color:#fff;}
+  .newsletter-note{color:#795C66;}
+  footer{background:rgba(255,255,255,.78); border-top-color:#F0DDE2;}
+  .social-row a{background:#FFF0F3; color:#9F4B66;}
+  .payment-icons span{background:#FFF8F8; border-color:#F0DDE2;}
+  .drawer,.modal,.auth-modal{background:#FFFEFE; border:1px solid #F2DDE2;}
+  .drawer-header,.drawer-footer{background:linear-gradient(110deg,#FFF8FA,#FFF9F2);}
+  .coupon-row button{background:#FFF0F3; border-color:#F2D5DD; color:#754253;}
+  .coupon-row button:hover{background:var(--dusty-rose); color:#fff;}
+  .modal-close,.auth-modal .modal-close{background:#FFF0F3; color:#754253;}
+  .auth-head .auth-icon{background:linear-gradient(145deg,var(--accent),var(--peach)); color:#8E4C61;}
+  .auth-switch a{color:#B95373;}
+  .toast{background:#B95373;}
+  .pd-main-img{border:5px solid #fff; background:linear-gradient(145deg,#FFF0F2,#EAF2F8);}
+  .pd-thumb.active{border-color:var(--dusty-rose);}
+  .form-card,.order-review-card,.order-card{border-color:#F0DDE2; border-radius:22px; box-shadow:0 8px 24px rgba(124,75,91,.07);}
+  .form-group input,.form-group select,.auth-form input,.coupon-row input,.search-panel input{background:#FFFCFC; border-color:#EEDDE1; border-radius:12px;}
+  .form-group input:focus,.form-group select:focus,.auth-form input:focus,.coupon-row input:focus,.search-panel input:focus{border-color:var(--dusty-rose); box-shadow:0 0 0 3px rgba(226,136,159,.14);}
+  .step-dot.active .circ{background:#B95373; border-color:#B95373;}
+  .step-dot.done .circ{background:var(--sage); border-color:#C8DDEB;}
+  .radio-card{border-color:#EEDDE1; border-radius:16px;}
+  .radio-card:hover,.radio-card.selected{border-color:var(--dusty-rose); box-shadow:0 0 0 2px rgba(226,136,159,.18);}
+  .radio-card input,.remember-me input{accent-color:#B95373;}
+  .recap-box{background:linear-gradient(120deg,#FFF0F3,#FFF5E9 60%,#F0F6FA);}
+  .success-icon{background:linear-gradient(145deg,var(--sage),var(--accent));}
+  .btn-primary{background:#B95373; color:#fff; box-shadow:0 7px 16px rgba(185,83,115,.2);}
+  .btn-primary:hover{background:#A74866; box-shadow:0 12px 24px rgba(185,83,115,.28);}
+  .btn-secondary{background:rgba(255,255,255,.72); border-color:#E7C6D0; color:#754253;}
+  .btn-secondary:hover{background:#FFF0F3; border-color:var(--dusty-rose); color:#754253;}
+  .btn-ghost{background:#FFF0F3; color:#754253;}
+  .btn-ghost:hover{background:var(--accent);}
+  .page{min-height:70vh;}
+  #page-category[data-category="skincare"] .page-title-row{
+    position:relative; overflow:hidden; padding:32px 36px; margin:8px 0 34px; border-radius:28px;
+    background:linear-gradient(110deg,rgba(255,199,209,.88),rgba(255,223,190,.78) 54%,rgba(222,234,243,.92));
+    border:1px solid rgba(255,255,255,.95); box-shadow:var(--shadow-sm);
+  }
+  #page-category[data-category="skincare"] .page-title-row::after{
+    content:'✿'; position:absolute; right:42px; top:50%; transform:translateY(-58%); font-size:100px;
+    line-height:1; color:rgba(185,83,115,.14); pointer-events:none;
+  }
+  #page-category[data-category="skincare"] .page-title-row h2{font-size:36px;}
+  #page-category[data-category="skincare"] .page-title-row p{font-size:14px;}
+  #page-category[data-category="skincare"] .product-card{background:linear-gradient(180deg,#fff 0%,#fffafa 100%);}
+  @media(max-width:1080px){.hero{padding:58px 34px 68px; gap:32px;}.hero::before{inset:18px 12px;border-radius:30px;}}
+  /* Soft, tidy storefront polish: warm rose details, calmer spacing, clearer cards. */
+  body{background:#FFFBF9;}
+  .nav{background:rgba(255,251,249,.94); box-shadow:0 5px 22px rgba(111,65,78,.045);}
+  .nav-inner{max-width:1340px;}
+  .logo-icon{width:38px;height:38px;border:2px solid rgba(255,255,255,.9);}
+  .logo-icon{
+    position:relative; isolation:isolate; overflow:visible;
+    width:40px;height:40px; flex:0 0 40px; border:1px solid rgba(255,255,255,.95);
+    border-radius:14px 14px 14px 5px;
+    background:linear-gradient(145deg,#F8B28A 2%,#E2889F 55%,#C96686 100%);
+    color:#fff; font-family:Georgia,serif; font-size:27px; font-style:italic; font-weight:600;
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.25),0 5px 13px rgba(185,83,115,.22);
+    transform:rotate(-4deg);
+  }
+  .logo-icon::after{
+    content:'✦'; position:absolute; z-index:1; right:-7px; top:-8px;
+    color:#F2B468; font:700 14px/1 Georgia,serif; text-shadow:0 1px 3px rgba(110,63,75,.18);
+    transform:rotate(12deg);
+  }
+  .hero{padding-top:68px;padding-bottom:76px;}
+  .hero::before{background:linear-gradient(125deg,rgba(255,224,231,.72),rgba(255,239,220,.72) 52%,rgba(230,241,248,.78));}
+  .hero h1{letter-spacing:-.055em;}
+  .hero h1 span{color:#B95373;font-family:Georgia,serif;font-style:italic;font-weight:500;}
+  .hero-text p.hero-brand{
+    margin:0 0 14px; color:#B95373; font-size:16px; font-weight:700;
+    letter-spacing:.24em; line-height:1.3; text-transform:uppercase;
+  }
+  .hero-text p.hero-brand::after{content:' ✧'; color:#E8A86E; font-size:15px; letter-spacing:0;}
+  .hero p{max-width:440px;}
+  .hero-tag{border-radius:18px;padding:13px 17px;}
+  .section-head h2{letter-spacing:-.045em;}
+  .section-head h2::after{width:36px;height:4px;margin-top:10px;}
+  .category-card{aspect-ratio:1/1.12;border-width:3px;border-radius:26px;}
+  .category-card img{filter:saturate(.92);}
+  .category-name{left:16px;bottom:16px;padding:8px 12px;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(67,42,51,.3);backdrop-filter:blur(8px);font-size:13px;}
+  .product-card{border-radius:20px;box-shadow:0 5px 18px rgba(111,65,78,.055);}
+  .product-media{aspect-ratio:4/4.8;}
+  .product-media img{object-position:center 24%;}
+  .product-info{padding:16px 16px 17px;}
+  .product-brand{font-size:10px;letter-spacing:.13em;}
+  .product-name{min-height:39px;}
+  .discount-badge{top:12px;left:12px;border:1px solid rgba(255,255,255,.8);}
+  .wishlist-icon{width:36px;height:36px;}
+  .add-cart-btn{min-height:42px;border-radius:999px;}
+  .add-cart-btn:hover{background:#B95373;border-color:#B95373;}
+  .page-title-row{position:relative;overflow:hidden;padding:28px 32px;margin:8px 0 30px;border:1px solid #F5E1E5;border-radius:26px;background:linear-gradient(110deg,#FFE8ED 0%,#FFF1DF 54%,#EAF3F8 100%);box-shadow:0 5px 18px rgba(111,65,78,.045);}
+  .page-title-row::after{content:'✿';position:absolute;right:32px;top:50%;transform:translateY(-55%);font-size:80px;line-height:1;color:rgba(185,83,115,.12);pointer-events:none;}
+  .page-title-row h2{font-size:clamp(28px,3vw,36px);}
+  .page-title-row p{font-size:13px;}
+  #page-category[data-category="skincare"] .page-title-row{padding:28px 32px;}
+  @media(max-width:720px){
+    .nav-inner{height:70px;padding:0 16px;}.logo-text{font-size:25px;}.nav-actions{gap:2px;}.icon-btn{width:36px;height:36px;}
+    .hero{padding:30px 20px 44px; gap:26px;}.hero::before{inset:8px 8px 10px;border-radius:24px;}.hero-text{padding:22px 10px 0;}.hero h1{font-size:42px;}.hero-visual{border-width:5px;border-radius:24px;}
+    section{padding:58px 0;}.section-head{align-items:flex-start;gap:12px;flex-direction:column;}.product-grid{gap:14px;}.product-card{border-radius:17px;}.product-info{padding:13px 12px 14px;}.product-name{font-size:13px;}.add-cart-btn{font-size:11.5px;padding:10px 5px;}
+    .deals-banner{padding:28px 22px;}.countdown{gap:6px;}.countdown .unit{min-width:54px;padding:10px 8px;}.newsletter{border-radius:20px;padding:34px 18px;}
+    .page-title-row{padding:23px 21px;margin-bottom:24px;}
+    .page-title-row::after{right:16px;font-size:66px;}
+    #page-category[data-category="skincare"] .page-title-row{padding:23px 21px;}
+    #page-category[data-category="skincare"] .page-title-row::after{right:16px;font-size:66px;}
+    #page-category[data-category="skincare"] .page-title-row h2{font-size:29px;}
+  }
 </style>
 </head>
 <body>
@@ -666,7 +849,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="javascript:void(0)" class="logo" onclick="goHome();">
-    <span class="logo-icon">N</span>
+    <span class="logo-icon" aria-hidden="true">N</span>
     <span class="logo-text">NariGlow</span>
 </a>
     <ul class="nav-links">
@@ -696,7 +879,7 @@
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
         <span class="badge" id="cartCount">0</span>
       </button>
-      <button class="icon-btn" aria-label="Account" onclick="openAuthModal('login')" id="profileBtn">
+      <button class="icon-btn" aria-label="Account" title="Log in or sign up" onclick="handleAccountAction()" id="profileBtn">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4.5 5-6 8-6s6.5 1.5 8 6"/></svg>
       </button>
     </div>
@@ -710,8 +893,8 @@
 <section id="home" class="hero" style="padding-top:64px;">
   <div class="hero-glow"></div>
   <div class="hero-text">
-    <span class="eyebrow">The Autumn Edit — 2026</span>
-    <h1>Your Style.<br>Your Shine.</h1>
+    <p class="hero-brand">NariGlow</p>
+    <h1>Your Style.<br><span>Your Shine.</span></h1>
     <p>Considered fashion, skincare and jewelry pieces, made to feel like second skin. Quietly beautiful, every day.</p>
     <div class="hero-actions">
       <a href="javascript:void(0)" class="btn btn-primary" onclick="goHome('shop')">Shop Now
@@ -982,14 +1165,15 @@
 
     <!-- STEP 2: PAYMENT -->
     <div class="checkout-step" id="checkoutStep2">
+      <div class="recap-box" style="border-color:var(--accent-deep); margin-bottom:16px;"><br>UPI and card selections simulate a successful payment.</div>
       <div class="payment-options" id="paymentOptions">
-        <label class="radio-card" data-val="upi"><input type="radio" name="payment" value="upi"><div><div class="rc-title">UPI</div><div class="rc-sub">Pay via Google Pay, PhonePe, Paytm & more</div></div></label>
-        <label class="radio-card" data-val="card"><input type="radio" name="payment" value="card"><div><div class="rc-title">Credit / Debit Card</div><div class="rc-sub">Visa, Mastercard, RuPay accepted</div></div></label>
+        <label class="radio-card" data-val="upi"><input type="radio" name="payment" value="upi"><div><div class="rc-title">UPI </div><div class="rc-sub">Simulate a successful UPI payment </div></div></label>
+        <label class="radio-card" data-val="card"><input type="radio" name="payment" value="card"><div><div class="rc-title">Card </div><div class="rc-sub">Simulate a successful card payment </div></div></label>
         <label class="radio-card" data-val="cod"><input type="radio" name="payment" value="cod"><div><div class="rc-title">Cash on Delivery</div><div class="rc-sub">Pay in cash when your order arrives</div></div></label>
       </div>
       <div class="step-actions">
         <button type="button" class="btn btn-secondary" onclick="showCheckoutStep(1)">Back</button>
-        <button type="button" class="btn btn-primary" onclick="submitPayment()">Continue to Review</button>
+        <button type="button" class="btn btn-primary" id="paymentContinueBtn" onclick="submitPayment()">Continue to Review</button>
       </div>
     </div>
 
@@ -1021,7 +1205,7 @@
       <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
     </div>
     <h2>Order Placed Successfully</h2>
-    <p>Thank you — a confirmation has been sent to your email. Here are your order details.</p>
+    <p>Thank you — your order has been recorded. Here are your order details.</p>
     <div class="order-card">
       <div class="order-card-head">
         <div><div class="oid" id="successOrderId"></div><div class="odate" id="successOrderDate"></div></div>
@@ -1162,7 +1346,7 @@
         </div>
         <div class="auth-row-between">
           <label class="remember-me"><input type="checkbox" id="rememberMe">Remember me</label>
-          <a class="forgot-link" onclick="handleForgotPassword()">Forgot Password?</a>
+          <a class="forgot-link" onclick="switchAuthModal('forgot')">Forgot Password?</a>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
@@ -1214,47 +1398,129 @@
       </form>
       <div class="auth-switch">Already have an account? <a onclick="switchAuthModal('login')">Login</a></div>
     </div>
+
+    <div id="authForgotView" style="display:none;">
+      <div class="auth-head"><h2>Reset Password</h2><p>We’ll email you a secure reset link.</p></div>
+      <form class="auth-form" onsubmit="return requestPasswordReset(event)">
+        <div class="auth-error" id="forgotError"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="forgotEmail" required></div>
+        <button type="submit" class="btn btn-primary">Send Reset Link</button>
+      </form>
+      <div class="auth-switch"><a onclick="switchAuthModal('login')">Back to login</a></div>
+    </div>
+
+    <div id="authResetView" style="display:none;">
+      <div class="auth-head"><h2>Choose a New Password</h2><p>Set a new password for your account.</p></div>
+      <form class="auth-form" onsubmit="return submitPasswordReset(event)">
+        <div class="auth-error" id="resetError"></div>
+        <div class="form-group"><label>New Password</label><input type="password" id="resetPassword" minlength="6" required></div>
+        <div class="form-group"><label>Confirm Password</label><input type="password" id="resetPasswordConfirm" minlength="6" required></div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </form>
+    </div>
   </div>
 </div>
+
+<div class="auth-overlay" id="profileOverlay" onclick="if(event.target===this) closeProfileModal()">
+  <div class="auth-modal">
+    <button class="modal-close" onclick="closeProfileModal()" aria-label="Close account"><span aria-hidden="true">×</span></button>
+    <div class="auth-head"><div class="auth-icon">NG</div><h2>Your Account</h2><p id="profileEmail"></p></div>
+    <form class="auth-form" onsubmit="return updateProfile(event)">
+      <div class="auth-error" id="profileError"></div>
+      <div class="form-group"><label>Full Name</label><input id="profileName" required maxlength="50"></div>
+      <div class="form-group"><label>Mobile Number</label><input id="profileMobile" required pattern="[0-9]{10}"></div>
+      <div class="form-group"><label>Current Password (required to change password)</label><input type="password" id="profileCurrentPassword" autocomplete="current-password"></div>
+      <div class="form-group"><label>New Password (optional)</label><input type="password" id="profileNewPassword" minlength="6" autocomplete="new-password"></div>
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+    <button class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:12px;" onclick="handleLogout()">Log Out</button>
+  </div>
+ </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+document.addEventListener('error', event => {
+  const image = event.target;
+  if(image instanceof HTMLImageElement && !image.dataset.fallback){
+    image.dataset.fallback = 'true';
+    image.src = './product-placeholder.svg';
+  }
+}, true);
+
 /* ==================================================================
    DATA MODEL
    ================================================================== */
 const categories = [
-  {slug:"sarees", name:"Sarees", img:"https://images.pexels.com/photos/27918892/pexels-photo-27918892.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"kurtis", name:"Kurtis", img:"https://images.pexels.com/photos/13178920/pexels-photo-13178920.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"skirts", name:"Skirts", img:"https://images.pexels.com/photos/25466385/pexels-photo-25466385.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"tops", name:"Tops", img:"https://images.pexels.com/photos/37466294/pexels-photo-37466294.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"western-wear", name:"Western Wear", img:"https://images.pexels.com/photos/31410216/pexels-photo-31410216.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"skincare", name:"Skincare", img:"https://images.pexels.com/photos/34939732/pexels-photo-34939732.jpeg?auto=compress&cs=tinysrgb&w=400"},
+  {slug:"sarees", name:"Sarees", img:"https://images.unsplash.com/photo-1776504768745-551029df100d?auto=format&fit=crop&w=500&q=85"},
+  {slug:"kurtis", name:"Kurtis", img:"https://images.unsplash.com/photo-1742800786544-e935375035e3?auto=format&fit=crop&w=500&q=85"},
+  {slug:"skirts", name:"Skirts", img:"https://images.unsplash.com/photo-1561932850-f13404855e53?auto=format&fit=crop&w=500&q=85"},
+  {slug:"tops", name:"Tops", img:"https://images.unsplash.com/photo-1735855335518-5a05da0730b4?auto=format&fit=crop&w=500&q=85"},
+  {slug:"western-wear", name:"Western Wear", img:"https://images.unsplash.com/photo-1760551600273-bca4b15907d0?auto=format&fit=crop&w=500&q=85"},
+  {slug:"skincare", name:"Skincare", img:"https://images.unsplash.com/photo-1777840347880-747242e0db00?auto=format&fit=crop&w=500&q=85"},
   {slug:"makeup", name:"Makeup", img:"https://images.pexels.com/photos/2586073/pexels-photo-2586073.jpeg?auto=compress&cs=tinysrgb&w=400"},
   {slug:"shoes", name:"Shoes", img:"https://images.pexels.com/photos/27113457/pexels-photo-27113457.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"jewelry", name:"Jewelry", img:"https://images.pexels.com/photos/13595793/pexels-photo-13595793.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"minimal-jewelry", name:"Minimal Jewelry", img:"https://images.pexels.com/photos/21787515/pexels-photo-21787515.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"accessories", name:"Accessories", img:"https://images.pexels.com/photos/16353877/pexels-photo-16353877.jpeg?auto=compress&cs=tinysrgb&w=400"},
-  {slug:"handbags", name:"Handbags", img:"https://images.pexels.com/photos/4830930/pexels-photo-4830930.jpeg?auto=compress&cs=tinysrgb&w=400"},
+  {slug:"jewelry", name:"Jewelry", img:"https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?auto=format&fit=crop&w=500&q=85"},
+  {slug:"minimal-jewelry", name:"Minimal Jewelry", img:"https://images.unsplash.com/photo-1778000001290-0b67eeb2fbc2?auto=format&fit=crop&w=500&q=85"},
+  {slug:"accessories", name:"Accessories", img:"https://images.unsplash.com/photo-1771695838794-d3139108b1cd?auto=format&fit=crop&w=500&q=85"},
+  {slug:"handbags", name:"Handbags", img:"https://images.unsplash.com/photo-1713425886033-91a7d74b26a5?auto=format&fit=crop&w=500&q=85"},
 ];
 
 const brands = ["Aura","Studio Nari","Linen & Co","Petal","Kōan","Verve","Maison Lune","Terra"];
 const adjectives = ["Silk Blend","Handwoven","Organic Cotton","Draped","Embroidered","Structured","Airy","Tailored","Signature","Classic"];
 
+const skincareImagePool = [
+  "1781343219404-3763ac92c6d3", "1597931752949-98c74b5b159f", "1777840347880-747242e0db00",
+  "1786171167196-7ed6f00b7924", "1778451510207-24f1e204f465", "1688380338608-a1cb35a6db3a",
+  "1772090830289-7699ce4ed388", "1782086816100-017c99c45109", "1764656424627-1fa7e5e7c2ed",
+  "1751831798147-a8c0b2bd9464", "1580870069867-74c57ee1bb07", "1608248543803-ba4f8c70ae0b",
+  "1556228720-195a672e8a03", "1571781926291-c477ebfd024b", "1611930022073-b7a4ba5fcccd",
+  "1601049541289-9b1b7bbbfe19"
+].map(id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=900&q=85`);
+
 // Each pool of Pexels photo IDs is curated to match its category's actual subject matter.
 const categoryImagePools = {
-  "sarees": [28939776,19015918,18035310,29996312,19015925,17768355,18035302,18456786,28428044,14765915,28706341,28428039],
-  "kurtis": [36311379,8770996,28512776,13178920,35521738,36567501,28512787,37523793,28213774,37523792,37523801,20702676],
-  "skirts": [5848788,11530922,19510476,5542969,8950053,27208599,17967726,36730400,19932178,20008026,18693642,20167615],
-  "tops": [20483777,29527343,15758653,5713294,10462543,10462527,10512915,9172606,26100325,13915356,16365010,2666467],
-  "western-wear": [31410216,14801160,21879348,8306375,8386652,10007478,3946692,15595670,15345385,10882067,2884299],
-  "skincare": [34939732,34939731,34939730,34939729,34939728,34939704,34939759,34939761,34939760,34939727],
+  "sarees": [
+    "https://images.unsplash.com/photo-1610189337543-1c5d8e64f574?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1692992193981-d3d92fabd9cb?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1638456286433-79766945a656?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1738690940173-e16fee805fe9?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1619516388835-2b60acc4049e?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1693382507826-e1ee4140f6a7?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1717835429626-d6dd3f2c9afb?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1597897545901-6ac15b725974?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1763017707725-a9854affe474?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1738690789530-9c5ee199575c?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1680711552692-76a8bd810398?auto=format&fit=crop&w=900&q=85"
+  ],
+  "kurtis": [
+    "https://images.unsplash.com/photo-1742800786544-e935375035e3?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1754391851702-e5275cf80e34?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1766994063823-ed214f883548?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1754641600710-16c1ba3894c6?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1742800788220-1e42256d6022?auto=format&fit=crop&w=900&q=85",
+    36311379,8770996,28512776,13178920,35521738,36567501,28512787
+  ],
+  "skirts": ["https://images.unsplash.com/photo-1561932850-f13404855e53?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1783095628724-c6036ce0ce70?auto=format&fit=crop&w=900&q=85",764872,22468578,16986581,22819845,5848788,11530922,19510476,5542969,8950053,27208599],
+  "tops": [
+    "https://images.unsplash.com/photo-1735855335518-5a05da0730b4?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1717766293792-e78ea97e9d68?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1724403467796-73725db14284?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1683849117195-83517b362436?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1527723503749-9e61addd1b3e?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1715541448115-3be2097950fa?auto=format&fit=crop&w=900&q=85",
+    "https://images.unsplash.com/photo-1548176450-5196b4c0816b?auto=format&fit=crop&w=900&q=85",
+    2059051,12678479,2859381,20736190,20483777
+  ],
+  "western-wear": [31410216,14801160,21879348,8306375,8386652,"https://images.unsplash.com/photo-1760551600273-bca4b15907d0?auto=format&fit=crop&w=900&q=85",3946692,15595670,15345385,10882067,2884299],
+  "skincare": skincareImagePool,
   "makeup": [2586073,2536009,2535913,2633986,2535928,2547462,2517447,2587363,2517881,2587370],
   "shoes": [27113457,27113458,27113460,27113465,27113462,26965810,27113463,26796158,27113459,26965813],
-  "jewelry": [13595793,12144990,20858959,13924051,10862233,12133990,33737462,10937834,8003772,34444125,18597841,19646999],
-  "minimal-jewelry": [21787515,9645737,15925159,4735885,7514818,10441397,10804840,7407595,8105125],
-  "accessories": [16353877,2761038,9558700,1697214,1667088,3641056,8651787,12569725,11506572,15035198,2883138,7901774],
-  "handbags": [4830930,5745781,3808249,26925244,1152077,1152078,26918698,30056477,932401,6787035,28775829],
+  "jewelry": ["https://images.unsplash.com/photo-1632525231035-c054cd5019db?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1662833832755-177c2ceb7869?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1774978239401-7bfaff4207ee?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1720528347553-5a251993ee00?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1623133343364-04d1d1a26fcb?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1758995115857-2de1eb6283d0?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1778182530965-b7dd00070c17?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1787022087854-177d08846b9e?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1767921777873-81818b812a4d?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1778148046789-8e3a677eebbd?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1617191880362-aac615de3c26?auto=format&fit=crop&w=900&q=85"],
+  "minimal-jewelry": ["https://images.unsplash.com/photo-1778000001290-0b67eeb2fbc2?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1632525231035-c054cd5019db?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1662833832755-177c2ceb7869?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1767921777873-81818b812a4d?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1770643661899-bf150b61789e?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1562819440-91870f5559d9?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1645748655092-74df6b5e93e0?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1623133343364-04d1d1a26fcb?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1758995115682-1452a1a9e35b?auto=format&fit=crop&w=900&q=85"],
+  "accessories": ["https://images.unsplash.com/photo-1771695838794-d3139108b1cd?auto=format&fit=crop&w=900&q=85",2761038,9558700,1697214,1667088,3641056,8651787,12569725,11506572,15035198,2883138,16353877],
+  "handbags": [16353877,"https://images.unsplash.com/photo-1713425886033-91a7d74b26a5?auto=format&fit=crop&w=900&q=85",3808249,"https://images.unsplash.com/photo-1559127452-cb4ef7888fa1?auto=format&fit=crop&w=900&q=85",1152077,4830930,26918698,30056477,932401,6787035,28775829],
 };
 
 const nounsByCategory = {
@@ -1263,7 +1529,7 @@ const nounsByCategory = {
   "skirts": ["Midi Skirt","Maxi Skirt","Pleated Skirt","A-Line Skirt","Wrap Skirt","Denim Skirt","Flared Skirt","Pencil Skirt","Tiered Skirt","Satin Skirt"],
   "tops": ["Wrap Top","Blouse","Crop Top","Tunic Top","Peplum Top","Off-Shoulder Top","Tie-Front Top","Puff Sleeve Top","Linen Top","Knit Top"],
   "western-wear": ["Co-ord Set","Jumpsuit","Shift Dress","Wide-Leg Trousers","Denim Jacket","Blazer Set","Culottes Set","Bodycon Dress","Palazzo Set","Playsuit"],
-  "skincare": ["Face Serum","Vitamin C Serum","Daily Moisturizer","Facial Cleanser","Sunscreen SPF50","Under Eye Cream","Clay Face Mask","Hydrating Toner","Lip Balm","Overnight Repair Cream"],
+  "skincare": ["Face Serum","Vitamin C Serum","Daily Moisturizer","Facial Cleanser","Sunscreen SPF50","Under Eye Cream","Clay Face Mask","Hydrating Toner","Lip Balm","Overnight Repair Cream","Barrier Comfort Moisturizer","Daily Mineral Sunscreen SPF 50","Calm & Clear Foaming Cleanser","Overnight Recovery Cream","Rosewater Hydrating Toner","Caffeine Bright Eye Gel"],
   "makeup": ["Kajal","Matte Lipstick","Liquid Foundation","Compact Powder","Eyeliner","Volumizing Mascara","Cream Blush","Highlighter Palette","Lip Gloss","Makeup Primer"],
   "shoes": ["Leather Loafers","Ballet Flats","Block Heels","Casual Sneakers","Flat Sandals","Wedge Heels","Stiletto Heels","Ankle Boots","Espadrilles","Slip-On Mules"],
   "jewelry": ["Gold Hoop Earrings","Statement Necklace","Kundan Ring","Gold Bangles Set","Choker Necklace","Jhumka Earrings","Bridal Necklace Set","Pearl Ring","Temple Jewelry Set","Charm Bracelet"],
@@ -1308,26 +1574,29 @@ categories.forEach((cat) => {
   const pool = categoryImagePools[cat.slug];
   const nouns = nounsByCategory[cat.slug];
   const list = [];
-  const count = Math.max(8, Math.min(pool.length, 12));
+  const count = cat.slug === "skincare" ? nouns.length : Math.max(8, Math.min(pool.length, 12));
   for(let i=0;i<count;i++){
     const id = allProducts.length;
     const noun = nouns[i % nouns.length];
     const brand = brands[id % brands.length];
     const adjective = adjectives[i % adjectives.length];
-    const name = `${adjective} ${noun}`;
+    const name = cat.slug === "skincare" && i >= 10 ? noun : `${adjective} ${noun}`;
     const base = 799 + ((id*173) % 4700);
     const hasDiscount = id % 3 !== 0;
     const discountPct = hasDiscount ? [10,15,20,25,30][id % 5] : 0;
     const price = hasDiscount ? Math.round(base * (1 - discountPct/100)) : base;
     // Main image is always pool[i] (unique per product in this category); gallery shots may reuse nearby pool entries.
-    const imgIds = [pool[i % pool.length], pool[(i+3) % pool.length], pool[(i+6) % pool.length]];
+    const imgIds = [pool[i % pool.length]];
+    const imageUrl = (value, width) => typeof value === "string"
+      ? value.replace("w=900", `w=${width}`)
+      : `https://images.pexels.com/photos/${value}/pexels-photo-${value}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
     const product = {
       id, name, brand, category: cat.name, categorySlug: cat.slug,
       price, oldPrice: hasDiscount ? base : null, discountPct,
       rating: (3.8 + (id % 12) * 0.1).toFixed(1),
       reviews: 20 + (id * 7) % 340,
-      images: imgIds.map(iid => `https://images.pexels.com/photos/${iid}/pexels-photo-${iid}.jpeg?auto=compress&cs=tinysrgb&w=700`),
-      img: `https://images.pexels.com/photos/${imgIds[0]}/pexels-photo-${imgIds[0]}.jpeg?auto=compress&cs=tinysrgb&w=500`,
+      images: imgIds.map(iid => imageUrl(iid, 700)),
+      img: imageUrl(imgIds[0], 500),
       stock: id % 9 === 0 ? "low" : "in",
       material: materialByCategory[cat.slug],
       care: careByCategory[cat.slug],
@@ -1346,20 +1615,21 @@ function pickAcrossCategories(offset, count){
     const catIdx = i % categories.length;
     const cat = categories[catIdx];
     const list = productsByCategory[cat.slug];
+    if(!list || !list.length) continue;
     out.push(list[(offset + Math.floor(i/categories.length)) % list.length]);
   }
   return out;
 }
-const featured = pickAcrossCategories(0, 8);
-const arrivals = pickAcrossCategories(9, 6);
-const bestsellers = pickAcrossCategories(2, 8);
-const trending = pickAcrossCategories(4, 8);
-const deals = allProducts.filter(p => p.discountPct >= 25).slice(0, 8);
+let featured = pickAcrossCategories(0, 8);
+let arrivals = pickAcrossCategories(9, 6);
+let bestsellers = pickAcrossCategories(2, 8);
+let trending = pickAcrossCategories(4, 8);
+let deals = allProducts.filter(p => p.discountPct >= 25).slice(0, 8);
 
 const whyItems = [
   {t:"Free Shipping", d:"On orders above ₹1,499", icon:'<path d="M1 3h13v13H1zM14 8h4l4 4v4h-8V8z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/>'},
   {t:"Easy Returns", d:"7-day hassle-free window", icon:'<path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5"/>'},
-  {t:"Secure Payments", d:"256-bit encrypted checkout", icon:'<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'},
+  {t:"Secure Checkout", d:"Your order details are saved to your account", icon:'<rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'},
   {t:"24/7 Support", d:"Real humans, always on", icon:'<circle cx="12" cy="12" r="9"/><path d="M12 8v4l2.5 2.5"/>'},
   {t:"Premium Quality", d:"Curated, quality-checked", icon:'<path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.4L12 16.9l-6.3 4.1L8 13.6l-6-4.4h7.6z"/>'},
   {t:"Fast Delivery", d:"2–4 day metro dispatch", icon:'<path d="M3 12h13M3 12l4-4M3 12l4 4"/><path d="M13 6h4l4 4v6h-8z"/>'},
@@ -1371,8 +1641,14 @@ const reviews = [
   {name:"Priya S.", img:"https://images.pexels.com/photos/32575147/pexels-photo-32575147.jpeg?auto=compress&cs=tinysrgb&w=100", rating:4, text:"Loved the kurti set — true to size and the stitching quality is excellent. Wish they had a couple more colourways."},
 ];
 
+const GUEST_CART_KEY = 'nariglowGuestCart';
+const GUEST_WISHLIST_KEY = 'nariglowGuestWishlist';
 let cart = [];
 let wishlist = new Set();
+try{
+  cart = JSON.parse(localStorage.getItem(GUEST_CART_KEY) || '[]');
+  wishlist = new Set(JSON.parse(localStorage.getItem(GUEST_WISHLIST_KEY) || '[]'));
+}catch(error){ cart = []; wishlist = new Set(); }
 let carouselIndex = 0;
 let couponApplied = false;
 let currentProductId = null;
@@ -1386,28 +1662,34 @@ function starString(rating){
   const full = Math.round(rating);
   return "★".repeat(full) + "☆".repeat(5-full);
 }
+function escapeHTML(value){
+  return String(value ?? '').replace(/[&<>"']/g, char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+}
+function inlineArg(value){
+  return "'" + String(value).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/[\r\n]/g,'') + "'";
+}
 
 function productCardHTML(p){
   const isWished = wishlist.has(p.id);
   return `
   <div class="product-card">
-    <div class="product-media" onclick="openProduct(${p.id})">
+    <div class="product-media" onclick="openProduct(${inlineArg(p.id)})">
       ${p.discountPct ? `<div class="discount-badge">-${p.discountPct}%</div>` : ""}
-      <button class="wishlist-icon ${isWished?"active":""}" onclick="toggleWishlist(${p.id}, event)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="${isWished?'#C97B7B':'none'}" stroke="${isWished?'#C97B7B':'#222'}" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <button class="wishlist-icon ${isWished?"active":""}" onclick="toggleWishlist(${inlineArg(p.id)}, event)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="${isWished?'#E2889F':'none'}" stroke="${isWished?'#E2889F':'#222'}" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
       </button>
       <img src="${p.img}" alt="${p.name}" loading="lazy">
-      <button class="quick-view-btn" onclick="event.stopPropagation(); openQuickView(${p.id})">Quick View</button>
+      <button class="quick-view-btn" onclick="event.stopPropagation(); openQuickView(${inlineArg(p.id)})">Quick View</button>
     </div>
     <div class="product-info">
       <div class="product-brand">${p.brand}</div>
-      <div class="product-name" onclick="openProduct(${p.id})">${p.name}</div>
+      <div class="product-name" onclick="openProduct(${inlineArg(p.id)})">${p.name}</div>
       <div class="product-rating"><span class="stars">${starString(p.rating)}</span> ${p.rating} (${p.reviews})</div>
       <div class="product-price-row">
         <span class="price-now">₹${p.price.toLocaleString('en-IN')}</span>
         ${p.oldPrice ? `<span class="price-old">₹${p.oldPrice.toLocaleString('en-IN')}</span>` : ""}
       </div>
-      <button class="add-cart-btn" onclick="addToCart(${p.id})">
+      <button class="add-cart-btn" onclick="addToCart(${inlineArg(p.id)})">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
         Add to Cart
       </button>
@@ -1480,6 +1762,7 @@ function scrollToFooter(anchorId){
 function goCategory(slug){
   const cat = categories.find(c => c.slug === slug);
   if(!cat) return;
+  document.getElementById('page-category').dataset.category = slug;
   const prods = productsByCategory[slug];
   document.getElementById('categoryCrumb').textContent = cat.name;
   document.getElementById('categoryTitle').textContent = cat.name;
@@ -1522,12 +1805,24 @@ function performSearch(q){
 }
 
 /* ---------------- WISHLIST ---------------- */
-function toggleWishlist(id, e){
+async function toggleWishlist(id, e){
   if(e) e.stopPropagation();
-  if(wishlist.has(id)){ wishlist.delete(id); } else { wishlist.add(id); showToast("Added to wishlist"); }
+  if(currentUser && !isApiCatalogReady){ showToast('Product catalogue is not ready yet. Refresh after it loads.'); return; }
+  const wasWished = wishlist.has(id);
+  if(wasWished){ wishlist.delete(id); } else { wishlist.add(id); showToast("Added to wishlist"); }
   document.getElementById("wishlistCount").textContent = wishlist.size;
   refreshVisibleGrids();
   renderWishlistPanel();
+  if(currentUser){
+    try{ await apiRequest(`/api/wishlist/${encodeURIComponent(id)}`, {method:wasWished?'DELETE':'POST'}); }
+    catch(error){
+      if(wasWished) wishlist.add(id); else wishlist.delete(id);
+      document.getElementById("wishlistCount").textContent = wishlist.size;
+      refreshVisibleGrids();
+      renderWishlistPanel();
+      showToast(error.message);
+    }
+  }else saveGuestShoppingData();
 }
 function toggleWishlistPanel(){
   document.getElementById("wishlistOverlay").classList.toggle("open");
@@ -1540,46 +1835,80 @@ function renderWishlistPanel(){
   if(!items.length){ body.innerHTML = `<div class="empty-cart">Your wishlist is empty.<br>Tap the heart on any product to save it here.</div>`; return; }
   body.innerHTML = `<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">` + items.map(p => `
     <div class="product-card" style="border:1px solid var(--border);">
-      <div class="product-media" style="aspect-ratio:1/1.15; cursor:pointer;" onclick="toggleWishlistPanel(); openProduct(${p.id});"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="product-media" style="aspect-ratio:1/1.15; cursor:pointer;" onclick="toggleWishlistPanel(); openProduct(${inlineArg(p.id)});"><img src="${p.img}" alt="${p.name}"></div>
       <div class="product-info">
         <div class="product-brand">${p.brand}</div>
         <div class="product-name" style="font-size:12.5px;">${p.name}</div>
         <div class="price-now" style="font-size:14px;">₹${p.price.toLocaleString('en-IN')}</div>
-        <button class="add-cart-btn" style="margin-top:8px; font-size:11.5px; padding:8px;" onclick="moveToCart(${p.id})">Move to Cart</button>
+        <button class="add-cart-btn" style="margin-top:8px; font-size:11.5px; padding:8px;" onclick="moveToCart(${inlineArg(p.id)})">Move to Cart</button>
       </div>
     </div>`).join("") + `</div>`;
 }
-function moveToCart(id){
-  addToCart(id);
+async function moveToCart(id){
+  const added = await addToCart(id);
+  if(!added) return;
+  if(currentUser){
+    try{ await apiRequest(`/api/wishlist/${encodeURIComponent(id)}`, {method:'DELETE'}); }
+    catch(error){ showToast(error.message); return; }
+  }
   wishlist.delete(id);
+  if(!currentUser) saveGuestShoppingData();
   document.getElementById("wishlistCount").textContent = wishlist.size;
   renderWishlistPanel();
   refreshVisibleGrids();
 }
 
 /* ---------------- CART ---------------- */
-function addToCart(id, qty){
+async function addToCart(id, qty){
   qty = qty || 1;
+  if(currentUser){
+    if(!isApiCatalogReady){ showToast('Product catalogue is not ready yet. Refresh after it loads.'); return false; }
+    try{
+      const result = await apiRequest('/api/cart', {method:'POST', body:JSON.stringify({productId:id, qty})});
+      setServerCart(result.data);
+      showToast("Added to bag");
+      return true;
+    }catch(error){ showToast(error.message); return false; }
+  }
   const existing = cart.find(c => c.id === id);
   if(existing){ existing.qty += qty; } else { cart.push({id, qty}); }
+  saveGuestShoppingData();
   updateCartUI();
   showToast("Added to bag");
+  return true;
 }
-function changeQty(id, delta){
+async function changeQty(id, delta){
   const item = cart.find(c => c.id === id);
   if(!item) return;
   item.qty += delta;
   if(item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  if(currentUser){
+    const updated = cart.find(c=>c.id===id);
+    try{
+      const result = await apiRequest(`/api/cart/${encodeURIComponent(id)}`, {method:'PUT', body:JSON.stringify({qty:updated ? updated.qty : 0})});
+      setServerCart(result.data);
+    }catch(error){ showToast(error.message); await loadUserShoppingData(); }
+    return;
+  }
+  saveGuestShoppingData();
   updateCartUI();
 }
-function removeFromCart(id){
+async function removeFromCart(id){
   cart = cart.filter(c => c.id !== id);
+  if(currentUser){
+    try{
+      const result = await apiRequest(`/api/cart/${encodeURIComponent(id)}`, {method:'DELETE'});
+      setServerCart(result.data);
+    }catch(error){ showToast(error.message); await loadUserShoppingData(); }
+    return;
+  }
+  saveGuestShoppingData();
   updateCartUI();
 }
 function cartTotals(){
   const subtotal = cart.reduce((sum,c)=>{
     const p = allProducts.find(x=>x.id===c.id);
-    return sum + p.price * c.qty;
+    return sum + (p ? p.price * c.qty : 0);
   },0);
   const discount = couponApplied ? Math.round(subtotal * 0.1) : 0;
   const shipping = subtotal > 1499 || subtotal === 0 ? 0 : 79;
@@ -1599,6 +1928,11 @@ function updateCartUI(){
     footer.innerHTML = `<a href="javascript:void(0)" class="btn btn-secondary" style="width:100%; justify-content:center;" onclick="toggleCart(); goHome('shop');">Continue Shopping</a>`;
     return;
   }
+  if(cart.some(item=>!allProducts.some(product=>product.id===item.id))){
+    body.innerHTML = `<div class="empty-cart">Loading your saved items…</div>`;
+    footer.innerHTML = '';
+    return;
+  }
 
   body.innerHTML = cart.map(c => {
     const p = allProducts.find(x=>x.id===c.id);
@@ -1610,13 +1944,13 @@ function updateCartUI(){
         <div class="variant">${p.brand} · Standard size</div>
         <div class="qty-row">
           <div class="qty-selector">
-            <button onclick="changeQty(${p.id},-1)">−</button>
+            <button onclick="changeQty(${inlineArg(p.id)},-1)">−</button>
             <span>${c.qty}</span>
-            <button onclick="changeQty(${p.id},1)">+</button>
+            <button onclick="changeQty(${inlineArg(p.id)},1)">+</button>
           </div>
           <div class="cart-item-price">₹${(p.price*c.qty).toLocaleString('en-IN')}</div>
         </div>
-        <button class="remove-btn" onclick="removeFromCart(${p.id})" style="margin-top:8px;">Remove</button>
+        <button class="remove-btn" onclick="removeFromCart(${inlineArg(p.id)})" style="margin-top:8px;">Remove</button>
       </div>
     </div>`;
   }).join("") + `
@@ -1646,7 +1980,7 @@ function applyCoupon(){
     msg.style.color = "#6F9E6A";
     msg.textContent = "Coupon applied — 10% off your order.";
   } else {
-    msg.style.color = "#C97B7B";
+    msg.style.color = "#E2889F";
     msg.textContent = "That code doesn't look right — try GLOW10.";
   }
   updateCartUI();
@@ -1666,7 +2000,7 @@ function refreshVisibleGrids(){
   if(document.getElementById('page-category').classList.contains('active')){
     const title = document.getElementById('categoryCrumb').textContent;
     const cat = categories.find(c=>c.name===title);
-    if(cat) document.getElementById('categoryGridPage').innerHTML = productsByCategory[cat.slug].map(productCardHTML).join("");
+    if(cat) document.getElementById('categoryGridPage').innerHTML = (productsByCategory[cat.slug] || []).map(productCardHTML).join("");
   }
 }
 
@@ -1695,8 +2029,8 @@ function openQuickView(id){
         <li><span>Origin</span><b>Made in India</b></li>
       </ul>
       <div class="modal-actions">
-        <button class="btn btn-secondary" onclick="addToCart(${p.id}); closeModal();">Add to Cart</button>
-        <button class="btn btn-primary" onclick="closeModal(); openProduct(${p.id});">View Full Details</button>
+        <button class="btn btn-secondary" onclick="addToCart(${inlineArg(p.id)}); closeModal();">Add to Cart</button>
+        <button class="btn btn-primary" onclick="closeModal(); openProduct(${inlineArg(p.id)});">View Full Details</button>
       </div>
     </div>
   `;
@@ -1749,8 +2083,8 @@ function renderProductDetail(id){
   const isWished = wishlist.has(p.id);
   wBtn.className = 'wishlist-icon' + (isWished ? ' active' : '');
   wBtn.style.position = 'static';
-  wBtn.querySelector('svg').setAttribute('fill', isWished ? '#C97B7B' : 'none');
-  wBtn.querySelector('svg').setAttribute('stroke', isWished ? '#C97B7B' : '#222');
+  wBtn.querySelector('svg').setAttribute('fill', isWished ? '#E2889F' : 'none');
+  wBtn.querySelector('svg').setAttribute('stroke', isWished ? '#E2889F' : '#222');
 
   document.getElementById('pdReviews').innerHTML = reviews.map(r => `
     <div class="review-card">
@@ -1773,17 +2107,16 @@ function pdChangeQty(delta){
   pdQty = Math.max(1, pdQty + delta);
   document.getElementById('pdQty').textContent = pdQty;
 }
-function pdToggleWishlist(){
-  if(wishlist.has(currentProductId)){ wishlist.delete(currentProductId); } else { wishlist.add(currentProductId); showToast("Added to wishlist"); }
-  document.getElementById("wishlistCount").textContent = wishlist.size;
+async function pdToggleWishlist(){
+  await toggleWishlist(currentProductId);
   renderProductDetail(currentProductId);
-  renderWishlistPanel();
 }
 function pdAddToCart(){
   addToCart(currentProductId, pdQty);
 }
-function pdBuyNow(){
-  addToCart(currentProductId, pdQty);
+async function pdBuyNow(){
+  const added = await addToCart(currentProductId, pdQty);
+  if(!added) return;
   startCheckout();
 }
 
@@ -1811,11 +2144,15 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 /* ---------------- NEWSLETTER ---------------- */
-function subscribeNewsletter(e){
+async function subscribeNewsletter(e){
   e.preventDefault();
   const note = document.getElementById("newsletterNote");
-  note.textContent = "You're on the list — welcome to NariGlow.";
-  document.getElementById("newsletterEmail").value = "";
+  note.textContent = "Adding you to the list…";
+  try{
+    const result = await apiRequest('/api/newsletter', {method:'POST', body:JSON.stringify({email:document.getElementById('newsletterEmail').value.trim()})});
+    note.textContent = result.message || "You're on the list — welcome to NariGlow.";
+    document.getElementById("newsletterEmail").value = "";
+  }catch(error){ note.textContent = error.message; }
   return false;
 }
 
@@ -1824,8 +2161,12 @@ function subscribeNewsletter(e){
    ================================================================== */
 function startCheckout(){
   if(!cart.length){ showToast("Your bag is empty"); return; }
+  if(!currentUser){ openAuthModal('login'); showToast('Log in to continue to checkout.'); return; }
   document.getElementById("cartOverlay").classList.remove("open");
   document.getElementById("cartDrawer").classList.remove("open");
+  document.getElementById('shipName').value = currentUser.name || '';
+  document.getElementById('shipEmail').value = currentUser.email || '';
+  document.getElementById('shipPhone').value = currentUser.mobile || '';
   showPage('page-checkout');
   showCheckoutStep(1);
 }
@@ -1859,12 +2200,19 @@ document.querySelectorAll('#paymentOptions .radio-card').forEach(card=>{
     document.querySelectorAll('#paymentOptions .radio-card').forEach(c=>c.classList.remove('selected'));
     card.classList.add('selected');
     card.querySelector('input').checked = true;
+    updatePaymentContinueButton();
   });
 });
+function updatePaymentContinueButton(){
+  const selected = document.querySelector('#paymentOptions input[name="payment"]:checked');
+  const button = document.getElementById('paymentContinueBtn');
+  if(button) button.textContent = selected && selected.value !== 'cod' ? 'Simulate Payment' : 'Continue to Review';
+}
 function submitPayment(){
   const checked = document.querySelector('#paymentOptions input[name="payment"]:checked');
   if(!checked){ showToast("Please select a payment method"); return; }
   paymentMethod = checked.value;
+  if(paymentMethod !== 'cod') showToast(' payment simulated successfully. ');
   renderOrderReview();
   showCheckoutStep(3);
 }
@@ -1874,8 +2222,9 @@ function paymentLabel(val){
 function renderOrderReview(){
   const s = shippingInfo;
   document.getElementById('recapShipping').innerHTML = `
-    <b>Shipping to</b><br>${s.name} · ${s.phone}<br>${s.address}, ${s.city}, ${s.state} — ${s.pincode}<br>${s.email}`;
-  document.getElementById('recapPayment').innerHTML = `<b>Payment Method</b><br>${paymentLabel(paymentMethod)}`;
+    <b>Shipping to</b><br>${escapeHTML(s.name)} · ${escapeHTML(s.phone)}<br>${escapeHTML(s.address)}, ${escapeHTML(s.city)}, ${escapeHTML(s.state)} — ${escapeHTML(s.pincode)}<br>${escapeHTML(s.email)}`;
+  const demoNote = paymentMethod === 'cod' ? '' : '<br><span style="color:var(--text-soft);"> payment simulated successfully. .</span>';
+  document.getElementById('recapPayment').innerHTML = `<b>Payment Method</b><br>${paymentLabel(paymentMethod)}${demoNote}`;
 
   document.getElementById('reviewMiniCart').innerHTML = cart.map(c=>{
     const p = allProducts.find(x=>x.id===c.id);
@@ -1896,34 +2245,34 @@ function renderOrderReview(){
     <div class="summary-row"><span>Tax</span><span>₹${t.tax.toLocaleString('en-IN')}</span></div>
     <div class="summary-row total"><span>Total</span><span>₹${t.total.toLocaleString('en-IN')}</span></div>`;
 }
-function placeOrder(){
-  const orderId = "NG" + Date.now().toString().slice(-8);
-  const orderDate = new Date();
-  const deliveryDate = new Date(Date.now() + 5*86400000);
-  const t = cartTotals();
-  const orderedItems = cart.map(c=>({...allProducts.find(x=>x.id===c.id), qty:c.qty}));
-  const s = shippingInfo;
-
-  document.getElementById('successOrderId').textContent = `Order #${orderId}`;
-  document.getElementById('successOrderDate').textContent = orderDate.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric', hour:'2-digit', minute:'2-digit'});
-  document.getElementById('successCustomer').innerHTML = `
-    <b>Deliver to</b><br>${s.name} · ${s.phone}<br>${s.address}, ${s.city}, ${s.state} — ${s.pincode}<br><b>Payment:</b> ${paymentLabel(paymentMethod)}`;
-  document.getElementById('successItems').innerHTML = orderedItems.map(p=>`
-    <div class="mini-cart-item">
-      <img src="${p.img}" alt="${p.name}">
-      <div style="flex:1;">
-        <div class="n">${p.name}</div>
-        <div style="color:var(--text-soft);">Qty ${p.qty} · ₹${(p.price*p.qty).toLocaleString('en-IN')}</div>
-      </div>
-    </div>`).join("");
-  document.getElementById('successTotals').innerHTML = `
-    <div class="summary-row total"><span>Total Paid</span><span>₹${t.total.toLocaleString('en-IN')}</span></div>`;
-  document.getElementById('successDelivery').innerHTML = `<b>Estimated Delivery:</b> ${deliveryDate.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}`;
-
-  cart = [];
-  couponApplied = false;
-  updateCartUI();
-  showPage('page-order-success');
+async function placeOrder(){
+  if(!currentUser){ openAuthModal('login'); showToast('Log in to place your order.'); return; }
+  if(!shippingInfo || !paymentMethod || !cart.length){ showToast('Complete checkout details before placing your order.'); return; }
+  const button = document.querySelector('#checkoutStep3 button.btn-primary');
+  const label = button ? button.textContent : '';
+  if(button){ button.disabled = true; button.textContent = 'Placing order…'; }
+  const orderedItems = cart.map(item=>({...allProducts.find(product=>product.id===item.id), qty:item.qty}));
+  const shipping = shippingInfo;
+  try{
+    const result = await apiRequest('/api/orders', {method:'POST', body:JSON.stringify({
+      shippingInfo:shipping,
+      paymentMethod,
+      couponCode:couponApplied ? 'GLOW10' : '',
+      items:cart.map(item=>({product:item.id, qty:item.qty}))
+    })});
+    const order = result.data;
+    document.getElementById('successOrderId').textContent = `Order #${order.orderId}`;
+    document.getElementById('successOrderDate').textContent = new Date(order.orderDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    document.getElementById('successCustomer').innerHTML = `<b>Deliver to</b><br>${escapeHTML(shipping.name)} · ${escapeHTML(shipping.phone)}<br>${escapeHTML(shipping.address)}, ${escapeHTML(shipping.city)}, ${escapeHTML(shipping.state)} — ${escapeHTML(shipping.pincode)}<br><b>Payment:</b> ${paymentLabel(paymentMethod)} · ${escapeHTML(order.paymentStatus)}`;
+    document.getElementById('successItems').innerHTML = orderedItems.map(product=>`<div class="mini-cart-item"><img src="${product.img}" alt="${product.name}"><div style="flex:1;"><div class="n">${product.name}</div><div style="color:var(--text-soft);">Qty ${product.qty} · ₹${(product.price*product.qty).toLocaleString('en-IN')}</div></div></div>`).join('');
+    document.getElementById('successTotals').innerHTML = `<div class="summary-row total"><span>Order Total</span><span>₹${order.total.toLocaleString('en-IN')}</span></div>`;
+    document.getElementById('successDelivery').innerHTML = `<b>Estimated Delivery:</b> ${new Date(order.estimatedDelivery).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}`;
+    cart = [];
+    couponApplied = false;
+    updateCartUI();
+    showPage('page-order-success');
+  }catch(error){ showToast(error.message); }
+  finally{ if(button){ button.disabled = false; button.textContent = label; } }
 }
 
 /* ---------------- TOAST ---------------- */
@@ -1939,7 +2288,232 @@ function showToast(msg){
 /* ==================================================================
    AUTH MODAL (LOGIN / REGISTER) — same page, no navigation
    ================================================================== */
+const AUTH_TOKEN_KEY = 'nariglowAuthToken';
+const resetToken = new URLSearchParams(window.location.search).get('reset');
 let currentUser = null;
+let isApiCatalogReady = false;
+
+async function apiRequest(path, options={}){
+  const headers = {...(options.headers || {})};
+  const token = getAuthToken();
+  if(token) headers.Authorization = `Bearer ${token}`;
+  if(options.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
+  const response = await fetch(path, {...options, headers});
+  const result = await response.json().catch(()=>({success:false,message:'The server returned an unreadable response.'}));
+  if(!response.ok || result.success === false){
+    if(response.status === 401 && currentUser){
+      currentUser = null;
+      localStorage.removeItem(AUTH_TOKEN_KEY);
+      sessionStorage.removeItem(AUTH_TOKEN_KEY);
+      updateAccountButton();
+    }
+    throw new Error(result.message || `Request failed (${response.status}).`);
+  }
+  return result;
+}
+
+async function loadProductCatalog(){
+  try{
+    const result = await apiRequest('/api/products?limit=500&sort=createdAt');
+    if(!result.data || !result.data.length){
+      showToast('Product catalogue is empty. Run npm run seed from the backend folder.');
+      return;
+    }
+    const previousProducts = allProducts;
+    const backendProducts = result.data.map(product=>({
+      ...product,
+      id:product._id,
+      rating:Number(product.rating || 0),
+      reviews:Number(product.reviews || 0),
+      images:product.images && product.images.length ? product.images : [product.img],
+      stock:product.stock || 'in'
+    }));
+    const migrateProductId = id=>{
+      if(backendProducts.some(product=>String(product.id) === String(id))) return String(id);
+      const previous = previousProducts.find(product=>String(product.id) === String(id));
+      const replacement = previous && backendProducts.find(product=>product.name === previous.name);
+      return replacement ? replacement.id : null;
+    };
+    cart = cart.map(item=>({id:migrateProductId(item.id), qty:item.qty})).filter(item=>item.id);
+    wishlist = new Set([...wishlist].map(migrateProductId).filter(Boolean));
+    try{
+      const savedCart = JSON.parse(localStorage.getItem(GUEST_CART_KEY) || '[]');
+      const savedWishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_KEY) || '[]');
+      localStorage.setItem(GUEST_CART_KEY, JSON.stringify(savedCart.map(item=>({id:migrateProductId(item.id),qty:item.qty})).filter(item=>item.id)));
+      localStorage.setItem(GUEST_WISHLIST_KEY, JSON.stringify(savedWishlist.map(migrateProductId).filter(Boolean)));
+    }catch(error){ localStorage.removeItem(GUEST_CART_KEY); localStorage.removeItem(GUEST_WISHLIST_KEY); }
+    allProducts = backendProducts;
+    productsByCategory = {};
+    categories.forEach(category=>{
+      productsByCategory[category.slug] = allProducts.filter(product=>product.categorySlug === category.slug);
+    });
+    featured = pickAcrossCategories(0, 8);
+    arrivals = pickAcrossCategories(9, 6);
+    bestsellers = pickAcrossCategories(2, 8);
+    trending = pickAcrossCategories(4, 8);
+    deals = allProducts.filter(product=>product.discountPct >= 25).slice(0, 8);
+    isApiCatalogReady = true;
+    renderAll();
+    refreshVisibleGrids();
+    if(!currentUser){
+      try{
+        cart = JSON.parse(localStorage.getItem(GUEST_CART_KEY) || '[]');
+        wishlist = new Set(JSON.parse(localStorage.getItem(GUEST_WISHLIST_KEY) || '[]'));
+      }catch(error){ cart = []; wishlist = new Set(); }
+      updateCartUI();
+      document.getElementById('wishlistCount').textContent = wishlist.size;
+      refreshVisibleGrids();
+    }
+    await syncGuestShoppingData();
+    await loadUserShoppingData();
+  }catch(error){
+    console.error('Could not load products from the API:', error);
+    showToast('Could not load the product catalogue. Check the backend and database.');
+  }
+}
+
+function saveGuestShoppingData(){
+  localStorage.setItem(GUEST_CART_KEY, JSON.stringify(cart));
+  localStorage.setItem(GUEST_WISHLIST_KEY, JSON.stringify([...wishlist]));
+}
+function setServerCart(data){
+  cart = (data && data.items || []).filter(item=>item.product).map(item=>({id:String(item.product._id), qty:Number(item.qty)}));
+  updateCartUI();
+}
+function setServerWishlist(data){
+  wishlist = new Set((data && data.products || []).filter(product=>product && product._id).map(product=>String(product._id)));
+  document.getElementById('wishlistCount').textContent = wishlist.size;
+  refreshVisibleGrids();
+  renderWishlistPanel();
+}
+async function loadUserShoppingData(){
+  if(!currentUser) return;
+  try{
+    const [cartResult, wishlistResult] = await Promise.all([apiRequest('/api/cart'), apiRequest('/api/wishlist')]);
+    setServerCart(cartResult.data);
+    setServerWishlist(wishlistResult.data);
+  }catch(error){ showToast(error.message); }
+}
+async function syncGuestShoppingData(){
+  if(!currentUser || !isApiCatalogReady) return;
+  try{
+    const guestCart = JSON.parse(localStorage.getItem(GUEST_CART_KEY) || '[]');
+    const guestWishlist = JSON.parse(localStorage.getItem(GUEST_WISHLIST_KEY) || '[]');
+    const [cartResult, wishlistResult] = await Promise.all([
+      apiRequest('/api/cart/sync', {method:'POST', body:JSON.stringify({localItems:guestCart})}),
+      apiRequest('/api/wishlist/sync', {method:'POST', body:JSON.stringify({localIds:guestWishlist})})
+    ]);
+    localStorage.removeItem(GUEST_CART_KEY);
+    localStorage.removeItem(GUEST_WISHLIST_KEY);
+    setServerCart(cartResult.data);
+    setServerWishlist(wishlistResult.data);
+  }catch(error){ showToast(`Could not sync saved items: ${error.message}`); }
+}
+
+function getAuthToken(){
+  return localStorage.getItem(AUTH_TOKEN_KEY) || sessionStorage.getItem(AUTH_TOKEN_KEY);
+}
+function saveAuthSession(user, remember){
+  const storage = remember ? localStorage : sessionStorage;
+  const otherStorage = remember ? sessionStorage : localStorage;
+  storage.setItem(AUTH_TOKEN_KEY, user.token);
+  otherStorage.removeItem(AUTH_TOKEN_KEY);
+  currentUser = user;
+  updateAccountButton();
+}
+function updateAccountButton(){
+  const button = document.getElementById('profileBtn');
+  if(!button) return;
+  button.title = currentUser ? `Account for ${currentUser.name}` : 'Log in or sign up';
+  button.setAttribute('aria-label', currentUser ? `Account for ${currentUser.name}` : 'Account');
+}
+function handleAccountAction(){
+  if(!currentUser){ openAuthModal('login'); return; }
+  document.getElementById('profileEmail').textContent = currentUser.email;
+  document.getElementById('profileName').value = currentUser.name || '';
+  document.getElementById('profileMobile').value = currentUser.mobile || '';
+  document.getElementById('profileCurrentPassword').value = '';
+  document.getElementById('profileNewPassword').value = '';
+  document.getElementById('profileError').textContent = '';
+  document.getElementById('profileOverlay').classList.add('open');
+}
+function closeProfileModal(){ document.getElementById('profileOverlay').classList.remove('open'); }
+function handleLogout(){
+  localStorage.removeItem(AUTH_TOKEN_KEY);
+  sessionStorage.removeItem(AUTH_TOKEN_KEY);
+  localStorage.removeItem(GUEST_CART_KEY);
+  localStorage.removeItem(GUEST_WISHLIST_KEY);
+  currentUser = null;
+  cart = [];
+  wishlist = new Set();
+  updateCartUI();
+  document.getElementById('wishlistCount').textContent = '0';
+  refreshVisibleGrids();
+  closeProfileModal();
+  updateAccountButton();
+  showToast('You have been logged out.');
+}
+async function updateProfile(e){
+  e.preventDefault();
+  const errorEl = document.getElementById('profileError');
+  const password = document.getElementById('profileNewPassword').value;
+  const currentPassword = document.getElementById('profileCurrentPassword').value;
+  if(password && !currentPassword){ errorEl.textContent = 'Enter your current password to change it.'; return false; }
+  const payload = {name:document.getElementById('profileName').value.trim(), mobile:document.getElementById('profileMobile').value.trim()};
+  if(password){ payload.password = password; payload.currentPassword = currentPassword; }
+  try{
+    const result = await apiRequest('/api/auth/profile', {method:'PUT', body:JSON.stringify(payload)});
+    saveAuthSession(result.data, !!localStorage.getItem(AUTH_TOKEN_KEY));
+    document.getElementById('profileEmail').textContent = currentUser.email;
+    closeProfileModal();
+    showToast('Account details updated.');
+  }catch(error){ errorEl.textContent = error.message; }
+  return false;
+}
+async function restoreAuthSession(){
+  const token = getAuthToken();
+  if(!token) return;
+  try{
+    const response = await fetch('/api/auth/me', {headers:{Authorization:`Bearer ${token}`}});
+    const result = await response.json();
+    if(!response.ok){
+      if(response.status === 401){
+        localStorage.removeItem(AUTH_TOKEN_KEY);
+        sessionStorage.removeItem(AUTH_TOKEN_KEY);
+      }
+      return;
+    }
+    currentUser = {...result.data, token};
+    updateAccountButton();
+    if(isApiCatalogReady){ await syncGuestShoppingData(); await loadUserShoppingData(); }
+  }catch(error){ /* Keep the token so a temporary connection failure does not sign the user out. */ }
+}
+
+async function submitAuthRequest(path, payload, errorEl, submitButton){
+  const originalLabel = submitButton ? submitButton.textContent : '';
+  if(submitButton){ submitButton.disabled = true; submitButton.textContent = 'Please wait…'; }
+  errorEl.textContent = '';
+  try{
+    const response = await fetch(`/api/auth/${path}`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    const result = await response.json();
+    if(!response.ok || !result.success) throw new Error(result.message || 'Authentication failed. Please try again.');
+    saveAuthSession(result.data, path === 'login' && document.getElementById('rememberMe').checked);
+    await syncGuestShoppingData();
+    await loadUserShoppingData();
+    closeAuthModal();
+    showToast(path === 'login' ? `Welcome back, ${currentUser.name}!` : `Account created — welcome, ${currentUser.name.split(' ')[0]}!`);
+  }catch(error){
+    errorEl.textContent = error.message === 'Failed to fetch'
+      ? 'Cannot reach the server. Open NariGlow through http://localhost:5000 and make sure the backend is running.'
+      : error.message;
+  }finally{
+    if(submitButton){ submitButton.disabled = false; submitButton.textContent = originalLabel; }
+  }
+}
 
 function openAuthModal(view){
   if(currentUser){
@@ -1955,9 +2529,10 @@ function closeAuthModal(){
   document.getElementById('authOverlay').classList.remove('open');
 }
 function switchAuthModal(view){
-  const isLogin = view === 'login';
-  document.getElementById('authLoginView').style.display = isLogin ? 'block' : 'none';
-  document.getElementById('authRegisterView').style.display = isLogin ? 'none' : 'block';
+  ['login','register','forgot','reset'].forEach(name=>{
+    const panel = document.getElementById(`auth${name[0].toUpperCase()}${name.slice(1)}View`);
+    if(panel) panel.style.display = view === name ? 'block' : 'none';
+  });
   document.getElementById('loginError').textContent = '';
   document.getElementById('registerError').textContent = '';
 }
@@ -1967,13 +2542,31 @@ function togglePasswordVisibility(inputId, iconEl){
   iconEl.style.opacity = input.type === 'text' ? '0.55' : '1';
 }
 function handleForgotPassword(){
-  const email = document.getElementById('loginEmail').value.trim();
-  if(!email){
-    document.getElementById('loginError').textContent = 'Enter your email above first, then tap Forgot Password.';
-    return;
-  }
-  closeAuthModal();
-  showToast(`Password reset link sent to ${email}`);
+  switchAuthModal('forgot');
+}
+async function requestPasswordReset(e){
+  e.preventDefault();
+  const error = document.getElementById('forgotError');
+  try{
+    const result = await apiRequest('/api/auth/forgot-password', {method:'POST', body:JSON.stringify({email:document.getElementById('forgotEmail').value.trim()})});
+    error.style.color = '#6F9E6A';
+    error.textContent = result.message;
+  }catch(err){ error.textContent = err.message; }
+  return false;
+}
+async function submitPasswordReset(e){
+  e.preventDefault();
+  const password = document.getElementById('resetPassword').value;
+  const error = document.getElementById('resetError');
+  if(password !== document.getElementById('resetPasswordConfirm').value){ error.textContent = 'Passwords do not match.'; return false; }
+  try{
+    const result = await apiRequest('/api/auth/reset-password', {method:'POST', body:JSON.stringify({token:resetToken, password})});
+    error.style.color = '#6F9E6A';
+    error.textContent = result.message;
+    history.replaceState({}, '', location.pathname);
+    setTimeout(()=>{ closeAuthModal(); switchAuthModal('login'); }, 1800);
+  }catch(err){ error.textContent = err.message; }
+  return false;
 }
 function handleLogin(e){
   e.preventDefault();
@@ -1982,10 +2575,7 @@ function handleLogin(e){
   const errorEl = document.getElementById('loginError');
   if(!email || !password){ errorEl.textContent = 'Please enter both email and password.'; return false; }
   if(password.length < 6){ errorEl.textContent = 'Password must be at least 6 characters.'; return false; }
-  errorEl.textContent = '';
-  currentUser = {email, name: email.split('@')[0]};
-  closeAuthModal();
-  showToast(`Welcome back, ${currentUser.name}!`);
+  submitAuthRequest('login', {email, password}, errorEl, e.submitter || e.currentTarget.querySelector('button[type="submit"]'));
   return false;
 }
 function handleRegister(e){
@@ -2009,12 +2599,12 @@ function handleRegister(e){
   if(password !== confirmPassword){
     errorEl.textContent = 'Passwords do not match.'; return false;
   }
-  errorEl.textContent = '';
-  currentUser = {name, email, mobile};
-  closeAuthModal();
-  showToast(`Account created — welcome, ${name.split(' ')[0]}!`);
+  submitAuthRequest('register', {name, email, mobile, password}, errorEl, e.submitter || e.currentTarget.querySelector('button[type="submit"]'));
   return false;
 }
+loadProductCatalog();
+restoreAuthSession();
+if(resetToken){ switchAuthModal('reset'); document.getElementById('authOverlay').classList.add('open'); }
 document.addEventListener('keydown', (e)=>{
   if(e.key === 'Escape') closeAuthModal();
 });

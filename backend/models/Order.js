@@ -63,7 +63,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
       default: 'Pending',
-      enum: ['Pending', 'Paid', 'Failed']
+      enum: ['Pending', 'Paid', 'Demo Paid', 'Failed']
     },
     subtotal: {
       type: Number,
